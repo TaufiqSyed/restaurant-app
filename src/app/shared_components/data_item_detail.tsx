@@ -1,6 +1,7 @@
 import { componentColor } from '@/constants/colors'
 import { Box, Button, Text, Flex, IconButton, Icon } from '@chakra-ui/react'
 import { MdEdit } from 'react-icons/md'
+import OrderForm from '../(orders)/order_form'
 
 export const DataItemDetail = ({
   datatype,
@@ -34,36 +35,24 @@ export const DataItemDetail = ({
     >
       <Box>
         <Button onClick={onBack} mb='30px'>
-          {'<< Back'}
+          {'<< Back to dashboard'}
         </Button>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
           <Text fontSize='32px' fontWeight='bold' mb='12px'>
             {datatype}
           </Text>
           <IconButton
-            aria-label='Edit Information'
             icon={<MdEdit />}
+            aria-label={'Edit Information'}
             onClick={onEdit}
-          ></IconButton>
+          />
         </Flex>
-        <Text fontSize='24px' fontWeight='bold' mb='4px'>
-          {'@' + title}
-        </Text>
       </Box>
       <Box fontSize='22px' mt='12px'>
-        {fieldnames.map((attrname, idx) => {
-          return (
-            <Flex
-              flexDir='row'
-              w='100%'
-              justifyContent={'space-between'}
-              p='4px 0'
-            >
-              <Text mr='4px'>{attrname + ': '}</Text>
-              <Text>{fieldsvals[idx]}</Text>
-            </Flex>
-          )
-        })}
+        <OrderForm
+          initialValues={{ order_id: '1234', employee_id: '1234' }}
+          viewOnly={true}
+        />
       </Box>
     </Box>
   )

@@ -11,16 +11,16 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { isNumeric } from '@/shared_utils/is_numeric'
-import { IOrder } from '@/constants/interfaces'
+import { IEmployee } from '@/constants/interfaces'
 
-export default function OrderForm({
+export default function EmployeeForm({
   initialValues,
   viewOnly,
   onSubmit,
 }: {
-  initialValues: IOrder
+  initialValues: IEmployee
   viewOnly: boolean
-  onSubmit: (values: IOrder) => void
+  onSubmit: (values: IEmployee) => void
 }) {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
@@ -28,18 +28,18 @@ export default function OrderForm({
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
             <FormControl isReadOnly={viewOnly}>
-              <FormLabel htmlFor='order_id'>Order ID</FormLabel>
+              <FormLabel htmlFor='user_id'>User ID</FormLabel>
               <Field
                 as={Input}
-                id='order_id'
-                name='order_id'
-                type='order_id'
+                id='user_id'
+                name='user_id'
+                type='user_id'
                 variant='filled'
                 readonly
               />
             </FormControl>
             <FormControl
-              isInvalid={!!errors.employee_id && touched.employee_id}
+              isInvalid={!!errors.user_id && touched.user_id}
               isReadOnly={viewOnly}
             >
               <FormLabel htmlFor='password'>Employee ID</FormLabel>
@@ -52,15 +52,15 @@ export default function OrderForm({
                 validate={(value: string) => {
                   let error
                   if (value.includes('.')) {
-                    error = 'Employee ID cannot contain full stops'
+                    error = 'User ID cannot contain full stops'
                   }
                   if (!isNumeric(value)) {
-                    error = 'Employee ID must be a valid integer'
+                    error = 'User ID must be a valid integer'
                   }
                   return error
                 }}
               />
-              <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
+              <FormErrorMessage>{errors.user_id}</FormErrorMessage>
             </FormControl>
             {!viewOnly && (
               <Button type='submit' colorScheme='purple' width='full' mt='23px'>

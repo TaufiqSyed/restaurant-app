@@ -35,7 +35,12 @@ export const DataItem = ({
       <Box fontSize='16px'>
         {fieldnames.map((attrname, idx) => {
           return (
-            <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
+            <Flex
+              flexDir='row'
+              w='100%'
+              justifyContent={'space-between'}
+              key={`${title}:${attrname}`}
+            >
               <Text mr='4px'>{attrname + ':'}</Text>
               <Text>{fieldsvals[idx]}</Text>
             </Flex>

@@ -1,24 +1,27 @@
 import { componentColor } from '@/constants/colors'
-import { Box, Button, Text, Flex, IconButton, Icon } from '@chakra-ui/react'
-import { MdEdit } from 'react-icons/md'
+import { Box, Button, Text, Flex } from '@chakra-ui/react'
 import OrderForm from '../(orders)/order_form'
+import { ReactNode } from 'react'
+import { IFormikForm } from '@/constants/interfaces'
 
 export const DataItemDetailEdit = ({
-  datatype,
+  dataHeader: datatype,
   titleField,
   json,
   onBack,
   onSave,
   onCancel,
   omitFields,
+  FormikForm,
 }: {
-  datatype: string
+  dataHeader: string
   titleField: string
   json: any
   onBack: () => void
   onSave: () => void
   onCancel: () => void
   omitFields: string[] | null | undefined
+  FormikForm: IFormikForm
 }) => {
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
@@ -37,22 +40,19 @@ export const DataItemDetailEdit = ({
     >
       <Box>
         <Button onClick={onBack} mb='30px'>
-          {'<< Back'}
+          {'<< Back to dashboard'}
         </Button>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
           <Text fontSize='32px' fontWeight='bold' mb='12px'>
             {datatype}
           </Text>
         </Flex>
-        <Text fontSize='24px' fontWeight='bold' mb='4px'>
-          {'@' + title}
-        </Text>
       </Box>
       <Box fontSize='22px' mt='12px'>
-        <OrderForm
-          initialValues={{ order_id: '1234', employee_id: '1234' }}
-          viewOnly={true}
-        />
+        <FormikForm initialValues={json} viewOnly={false} onSubmit={onSave} />
+        <Button onClick={onCancel} width='full' mt='14px'>
+          Cancel
+        </Button>
       </Box>
     </Box>
   )
