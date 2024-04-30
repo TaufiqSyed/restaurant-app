@@ -1,4 +1,4 @@
-import { Formik, Field } from 'formik'
+import { Formik, Field, isInteger } from 'formik'
 import {
   Box,
   Button,
@@ -13,6 +13,16 @@ import {
 import { isNumeric } from '@/shared_utils/is_numeric'
 import { IOrder } from '@/constants/interfaces'
 
+// order_id: number
+// employee_id: number
+// customer_id: number
+// table_number: number
+// order_date: Date
+// total_price: number
+// menu_items?: IMenuItem[]
+// customer?: ICustomer
+// menu_item_ids?: number[]
+
 export default function OrderForm({
   initialValues,
   viewOnly,
@@ -20,10 +30,10 @@ export default function OrderForm({
 }: {
   initialValues: IOrder
   viewOnly: boolean
-  onSubmit: (values: IOrder) => void
+  onSubmit?: (values: IOrder) => void
 }) {
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit ?? (() => {})}>
       {({ handleSubmit, errors, touched }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
@@ -33,7 +43,8 @@ export default function OrderForm({
                 as={Input}
                 id='order_id'
                 name='order_id'
-                type='order_id'
+                // type='order_id'
+                type='number'
                 variant='filled'
                 readonly
               />
@@ -47,17 +58,17 @@ export default function OrderForm({
                 as={Input}
                 id='employee_id'
                 name='employee_id'
-                type='employee_id'
+                // type='employee_id'
+                type='number'
                 variant='filled'
-                validate={(value: string) => {
+                validate={(value: number) => {
                   let error
-                  if (value.includes('.')) {
-                    error = 'Employee ID cannot contain full stops'
+                  if (!isInteger(value)) {
+                    error = 'Employee ID must be an integer'
                   }
-                  if (!isNumeric(value)) {
-                    error = 'Employee ID must be a valid integer'
+                  if (value <= 0) {
+                    error = 'Employee ID cannot be negative'
                   }
-                  return error
                 }}
               />
               <FormErrorMessage>{errors.employee_id}</FormErrorMessage>

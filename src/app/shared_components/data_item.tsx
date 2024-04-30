@@ -1,4 +1,5 @@
 import { componentColor } from '@/constants/colors'
+import { fieldString } from '@/shared_utils/field_string'
 import { Box, Button, Text, Flex } from '@chakra-ui/react'
 
 export const DataItem = ({
@@ -10,14 +11,14 @@ export const DataItem = ({
   titleField: string
   json: any
   onClick: () => void
-  omitFields: string[] | null | undefined
+  omitFields?: string[]
 }) => {
+  let title: any = json[titleField]
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
     fieldnames = fieldnames.filter((e) => !omitFields!.includes(e))
   }
   let fieldsvals: any[] = fieldnames.map((e) => json[e])
-  let title: any = json[titleField]
   return (
     <Box
       borderRadius='12px'
@@ -42,7 +43,7 @@ export const DataItem = ({
               key={`${title}:${attrname}`}
             >
               <Text mr='4px'>{attrname + ':'}</Text>
-              <Text>{fieldsvals[idx]}</Text>
+              <Text>{fieldString(fieldsvals[idx])}</Text>
             </Flex>
           )
         })}

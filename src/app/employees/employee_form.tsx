@@ -28,18 +28,18 @@ export default function EmployeeForm({
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
             <FormControl isReadOnly={viewOnly}>
-              <FormLabel htmlFor='user_id'>User ID</FormLabel>
+              <FormLabel htmlFor='employee_id'>User ID</FormLabel>
               <Field
                 as={Input}
-                id='user_id'
-                name='user_id'
-                type='user_id'
+                id='employee_id'
+                name='employee_id'
+                type='employee_id'
                 variant='filled'
                 readonly
               />
             </FormControl>
             <FormControl
-              isInvalid={!!errors.user_id && touched.user_id}
+              isInvalid={!!errors.employee_id && touched.employee_id}
               isReadOnly={viewOnly}
             >
               <FormLabel htmlFor='password'>Employee ID</FormLabel>
@@ -60,7 +60,7 @@ export default function EmployeeForm({
                   return error
                 }}
               />
-              <FormErrorMessage>{errors.user_id}</FormErrorMessage>
+              <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
             </FormControl>
             {!viewOnly && (
               <Button type='submit' colorScheme='purple' width='full' mt='23px'>

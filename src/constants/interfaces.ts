@@ -4,7 +4,7 @@ export interface IUser {
 }
 
 export interface IEmployee {
-  user_id: number
+  employee_id: number
   username: string
   is_admin: boolean
   name: string
@@ -32,11 +32,12 @@ export interface IMenuItem {
 export interface IOrder {
   order_id: number
   employee_id: number
-  customer_id: string
+  customer_id: number
   table_number: number
   order_date: Date
   total_price: number
   menu_items?: IMenuItem[]
+  customer?: ICustomer
   menu_item_ids?: number[]
 }
 
@@ -48,7 +49,7 @@ export interface ILogin {
 export interface IFormikFormProps {
   initialValues: IOrder
   viewOnly: boolean
-  onSubmit: (values: IOrder) => void
+  onSubmit?: (values: IOrder) => void
 }
 
 export type IFormikForm = (props: IFormikFormProps) => JSX.Element

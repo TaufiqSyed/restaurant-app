@@ -2,21 +2,24 @@ import { componentColor } from '@/constants/colors'
 import { Box, Button, Text, Flex, IconButton, Icon } from '@chakra-ui/react'
 import { MdEdit } from 'react-icons/md'
 import OrderForm from '../(orders)/order_form'
+import { IFormikForm } from '@/constants/interfaces'
 
 export const DataItemDetail = ({
-  datatype,
+  dataHeader,
   titleField,
   json,
   onBack,
   onEdit,
+  FormikForm,
   omitFields,
 }: {
-  datatype: string
+  dataHeader: string
   titleField: string
   json: any
   onBack: () => void
   onEdit: () => void
-  omitFields: string[] | null | undefined
+  FormikForm: IFormikForm
+  omitFields?: string[]
 }) => {
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
@@ -39,7 +42,7 @@ export const DataItemDetail = ({
         </Button>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
           <Text fontSize='32px' fontWeight='bold' mb='12px'>
-            {datatype}
+            {dataHeader}
           </Text>
           <IconButton
             icon={<MdEdit />}
@@ -49,10 +52,7 @@ export const DataItemDetail = ({
         </Flex>
       </Box>
       <Box fontSize='22px' mt='12px'>
-        <OrderForm
-          initialValues={{ order_id: '1234', employee_id: '1234' }}
-          viewOnly={true}
-        />
+        <FormikForm initialValues={json} viewOnly={true} />
       </Box>
     </Box>
   )

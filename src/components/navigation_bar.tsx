@@ -46,7 +46,7 @@ import { componentColor, navbarColor } from '@/constants/colors'
 const Links = [
   { name: 'Orders', href: '/', adminOnly: false },
   { name: 'Employees', href: '/employees', adminOnly: true },
-  { name: 'Customers', href: '/customer', adminOnly: false },
+  { name: 'Customers', href: '/customers', adminOnly: false },
   { name: 'Menu', href: '/menu', adminOnly: false },
 ]
 
@@ -57,9 +57,6 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string }) => {
 export function NavigationBar({ root_href }: { root_href: string }) {
   // const [isLargerThan700] = useMediaQuery('(min-width: 700px)')
   // const [isLargerThan600] = useMediaQuery('(min-width: 600px)')
-  const isLargerThan600 = !useMediaQuery(600)
-  const isLargerThan1100 = !useMediaQuery(1100)
-  const isLargerThan1200 = !useMediaQuery(1200)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [navOpen, setNavOpen] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -107,16 +104,18 @@ export function NavigationBar({ root_href }: { root_href: string }) {
             />
             <HStack spacing={8} alignItems={'center'}>
               <Box w='100%' maxW='24px' minW='0' />
-              <Text
-                fontWeight='bold'
-                fontStyle='italic'
-                fontSize='18px'
-                lineHeight='1'
-                mr='50px'
-                w='67px'
-              >
-                Bon Appétit
-              </Text>
+              <HrefLink href='/'>
+                <Text
+                  fontWeight='bold'
+                  fontStyle='italic'
+                  fontSize='18px'
+                  lineHeight='1'
+                  mr='50px'
+                  w='67px'
+                >
+                  Bon Appétit
+                </Text>
+              </HrefLink>
               <HStack
                 as={'nav'}
                 spacing={4}
@@ -168,19 +167,6 @@ export function NavigationBar({ root_href }: { root_href: string }) {
                 Log In
               </HrefLink>
               <HrefLink href='/register'>Sign Up</HrefLink>
-              {/* <Button
-                variant='login-pill'
-                ml='auto'
-                onClick={() => router.push('/login')}
-              >
-                Log In
-              </Button>
-              <Button
-                variant='signup-pill'
-                onClick={() => router.push('/register')}
-              >
-                Sign Up
-              </Button> */}
             </Flex>
           </Flex>
         </>
