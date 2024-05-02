@@ -1,4 +1,3 @@
-import { componentColor } from '@/constants/colors'
 import { Box, Button, Text, Flex, IconButton, Icon } from '@chakra-ui/react'
 import { MdEdit } from 'react-icons/md'
 import LoginForm from './login_form'
@@ -7,7 +6,7 @@ export const LoginBox = () => {
   return (
     <Box
       borderRadius='12px'
-      bgColor={componentColor}
+      bgColor='componentColor'
       position='relative'
       p='48px 32px'
       w='100%'
@@ -22,7 +21,7 @@ export const LoginBox = () => {
       </Box>
       <Box fontSize='22px' mt='12px'>
         <LoginForm
-          initialValues={{ order_id: '1234', employee_id: '1234' }}
+          initialValues={{ email: '', password: '' }}
           viewOnly={false}
         />
       </Box>

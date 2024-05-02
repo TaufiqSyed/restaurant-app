@@ -11,9 +11,20 @@ import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 // password?: string
 
 export class MockEmployeeRepository {
+  static emptyEmployee = (): IEmployee => {
+    return {
+      employee_id: randomName(),
+      username: randomName(),
+      is_admin: false,
+      name: randomName(),
+      position: randomName(),
+      phone: randomInteger().toString(),
+      salary: randomInteger(),
+    }
+  }
   static generateMockEmployee = (): IEmployee => {
     return {
-      employee_id: randomInteger(),
+      employee_id: randomName(),
       username: randomName(),
       is_admin: false,
       name: randomName(),

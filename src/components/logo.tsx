@@ -1,7 +1,7 @@
 import { Box, Image } from '@chakra-ui/react'
 
-export const Logo = () => (
+export const Logo = ({ colorMode }: { colorMode: string }) => (
   // <Box boxSize='sm'>
-  <Image src='/logo.svg' alt='Logo' boxSize='55px' />
+  <Image src={`/logo-${colorMode}.svg`} alt='Logo' boxSize='55px' />
   // </Box>
 )

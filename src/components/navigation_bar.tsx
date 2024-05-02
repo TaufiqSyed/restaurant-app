@@ -19,6 +19,7 @@ import {
   Stack,
   MenuGroup,
   FlexProps,
+  useColorMode,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, Icon } from '@chakra-ui/icons'
 import { useRouter } from 'next/navigation'
@@ -36,10 +37,10 @@ import { BsNutFill } from 'react-icons/bs'
 import { HrefLink } from './href_link'
 import { IUser } from '@/constants/interfaces'
 import { useMediaQuery } from '@/shared_utils/use_media_query'
-import { componentColor, navbarColor } from '@/constants/colors'
 import { MockOrderRepository } from '@/app/(orders)/_data/mock_order_repository'
 import { Logo } from './logo'
 import { NavLogo } from './nav_logo'
+import { DarkModeSwitch } from './dark_mode_switch'
 // import '@fontsource/open-sans/700.css'
 
 // interface Props {
@@ -48,9 +49,9 @@ import { NavLogo } from './nav_logo'
 
 const Links = [
   { name: 'Orders', href: '/', adminOnly: false },
-  { name: 'Employees', href: '/employees', adminOnly: true },
-  { name: 'Customers', href: '/customers', adminOnly: false },
-  { name: 'Menu', href: '/menu', adminOnly: false },
+  { name: 'Employees', href: '/employees/', adminOnly: true },
+  { name: 'Customers', href: '/customers/', adminOnly: false },
+  { name: 'Menu', href: '/menu/', adminOnly: false },
 ]
 
 const NavLink = ({ children, href }: { children: ReactNode; href: string }) => {
@@ -61,11 +62,11 @@ const hrefToEntityName = (root_href: string) => {
   switch (root_href) {
     case '/':
       return 'Order'
-    case '/employees':
+    case '/employees/':
       return 'Employee'
-    case '/customers':
+    case '/customers/':
       return 'Customer'
-    case '/menu':
+    case '/menu/':
       return 'Menu Item'
   }
 }
@@ -86,6 +87,7 @@ const hrefToEntityOnCreate = (root_href: string) => {
 
 export function NavigationBar({ root_href }: { root_href: string }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { colorMode } = useColorMode()
   const [navOpen, setNavOpen] = useState(true)
   const [loading, setLoading] = useState(true)
 
@@ -111,7 +113,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
       as='header'
       position='fixed'
       top='0'
-      bgColor={navbarColor}
+      bgColor='navbarColor'
       zIndex='2'
       pt='20px'
       pb='8px'
@@ -132,7 +134,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
             />
             <HStack spacing={8} alignItems={'center'} p='0 56px'>
               <HrefLink href='/'>
-                <NavLogo />
+                <NavLogo colorMode={colorMode} />
               </HrefLink>
               <HStack
                 as={'nav'}
@@ -177,13 +179,14 @@ export function NavigationBar({ root_href }: { root_href: string }) {
             </Box>
           ) : null}
           {!isOpen && (
-            <Box ml='auto' mr='50px'>
+            <Flex ml='auto' mr='50px' flexDir='row' alignItems='center'>
+              <DarkModeSwitch />
               <NavLink href={root_href + 'create'}>
                 <Button colorScheme='purple'>
                   Create {hrefToEntityName(root_href)}
                 </Button>
               </NavLink>
-            </Box>
+            </Flex>
           )}
         </Flex>
       ) : (

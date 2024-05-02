@@ -7,9 +7,17 @@ import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 // email?: string
 
 export class MockCustomerRepository {
+  static emptyCustomer = (): ICustomer => {
+    return {
+      customer_id: '',
+      name: '',
+      phone: '',
+      email: '',
+    }
+  }
   static generateMockCustomer = (): ICustomer => {
     return {
-      customer_id: randomInteger(),
+      customer_id: randomName(),
       name: randomName(),
       phone: randomInteger().toString(),
       email: randomName(),

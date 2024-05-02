@@ -1,14 +1,14 @@
 'use client'
 
-import { Container } from '@/app/shared_components/container'
-import { DataItemDetailEdit } from '@/app/shared_components/data_item_detail_edit'
-import { IMenuItem, IOrder, IPartialOrder } from '@/constants/interfaces'
+import { Container } from '@/components/container'
+import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
+import { IMenuItem, IOrder, IOrder } from '@/constants/interfaces'
 import { useParams, useRouter } from 'next/navigation'
 import { MockOrderRepository } from '../_data/mock_order_repository'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { useState, useEffect } from 'react'
 import OrderForm from '../order_form'
-import { LoadingSpinner } from '@/app/shared_components/loading_spinner'
+import { LoadingSpinner } from '@/components/loading_spinner'
 
 export default function OrderCreatePage() {
   const emptyOrder = MockOrderRepository.emptyOrder()

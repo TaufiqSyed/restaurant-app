@@ -1,14 +1,14 @@
 'use client'
 
 import { Box, Grid } from '@chakra-ui/react'
-import { DataItem } from '../shared_components/data_item'
+import { DataItem } from '../../components/data_item'
 import { useRouter } from 'next/navigation'
 import { NavigationBar } from '@/components/navigation_bar'
-import { Container } from '../shared_components/container'
+import { Container } from '../../components/container'
 import { ICustomer } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { MockCustomerRepository } from './_data/mock_customer_repository'
-import { LoadingSpinner } from '../shared_components/loading_spinner'
+import { LoadingSpinner } from '../../components/loading_spinner'
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<ICustomer[]>([])
@@ -24,14 +24,14 @@ export default function CustomersPage() {
 
   if (loading) return <LoadingSpinner />
   return (
-    <Container root_href='/customers'>
+    <Container root_href='/customers/'>
       {customers.map((customer) => (
         <DataItem
           key={customer.customer_id}
           titleField='customer_id'
           json={customer}
           onClick={(): void => {
-            router.push(`/${customer.customer_id}`)
+            router.push(`customers/${customer.customer_id}`)
           }}
         />
       ))}

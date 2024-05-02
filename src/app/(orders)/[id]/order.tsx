@@ -1,15 +1,15 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { DataItemDetail } from '@/app/shared_components/data_item_detail'
-import { Container } from '@/app/shared_components/container'
+import { DataItemDetail } from '@/components/data_item_detail'
+import { Container } from '@/components/container'
 import { useEffect, useState } from 'react'
 import { IMenuItem, IOrder, IPartialOrder } from '@/constants/interfaces'
 import OrderForm from '../order_form'
 import { MockOrderRepository } from '../_data/mock_order_repository'
-import { LoadingSpinner } from '@/app/shared_components/loading_spinner'
+import { LoadingSpinner } from '@/components/loading_spinner'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
-import { DataItemDetailEdit } from '@/app/shared_components/data_item_detail_edit'
+import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
 
 export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
   const [order, setOrder] = useState<IOrder | null>(null)
@@ -44,7 +44,6 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
       {isEdit ? (
         <DataItemDetailEdit
           dataHeader='Order Information'
-          // titleField='order_id'
           json={order!}
           onBack={() => {
             router.push('/')

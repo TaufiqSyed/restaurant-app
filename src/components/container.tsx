@@ -12,12 +12,12 @@ export const Container = ({
   return (
     <Grid
       position='absolute'
-      top='150px'
       w='100%'
       gridTemplateColumns='repeat(auto-fit, minmax(350px, 1fr))'
       gridRowGap='20px'
       gridColumnGap='40px'
-      p='0 40px'
+      p='150px 40px 50px 40px'
+      bg='background'
     >
       <NavigationBar root_href={root_href} />
       {children}

@@ -8,9 +8,18 @@ import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 // category?: string
 
 export class MockMenuItemRepository {
+  static emptyMenuItem = (): IMenuItem => {
+    return {
+      item_id: '',
+      item_name: '',
+      description: '',
+      price: '',
+      category: '',
+    }
+  }
   static generateMockMenuItem = (): IMenuItem => {
     return {
-      item_id: randomInteger(),
+      item_id: randomName(),
       item_name: randomName(),
       description: randomName(),
       price: randomInteger(),
@@ -23,7 +32,7 @@ export class MockMenuItemRepository {
       menuitems.push(MockMenuItemRepository.generateMockMenuItem())
     return menuitems
   }
-  static fetchMenuItemById = async (id: number): Promise<IMenuItem> => {
+  static fetchMenuItemById = async (id: string): Promise<IMenuItem> => {
     return MockMenuItemRepository.generateMockMenuItem()
   }
 }

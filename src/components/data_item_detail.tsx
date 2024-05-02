@@ -38,7 +38,7 @@ export const DataItemDetail = ({
   return (
     <Box
       borderRadius='12px'
-      bgColor={componentColor}
+      bgColor='componentColor'
       position='relative'
       p='48px 32px'
       w='100%'

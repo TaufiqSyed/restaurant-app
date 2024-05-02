@@ -1,12 +1,15 @@
 export class Validator {
-  static posInteger = (value: any) => {
+  static posInteger = (value: number | '') => {
     let error
-    if (!Number.isInteger(value)) {
-      error = 'Employee ID must be an integer'
+    if (value != '' && value <= 0) {
+      error = 'Cannot be negative'
     }
-    if (value <= 0) {
-      error = 'Employee ID cannot be negative'
-    }
+    if (value == '') error = 'Cannot be empty'
+    return error
+  }
+  static nonEmpty = (value: string) => {
+    let error
+    if (value == '') error = 'Cannot be empty'
     return error
   }
 }

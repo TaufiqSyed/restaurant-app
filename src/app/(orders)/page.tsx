@@ -1,14 +1,14 @@
 'use client'
 
 import { Box, Grid } from '@chakra-ui/react'
-import { DataItem } from '../shared_components/data_item'
+import { DataItem } from '../../components/data_item'
 import { useRouter } from 'next/navigation'
 import { NavigationBar } from '@/components/navigation_bar'
-import { Container } from '../shared_components/container'
+import { Container } from '../../components/container'
 import { IOrder } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { MockOrderRepository } from './_data/mock_order_repository'
-import { LoadingSpinner } from '../shared_components/loading_spinner'
+import { LoadingSpinner } from '../../components/loading_spinner'
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<IOrder[]>([])

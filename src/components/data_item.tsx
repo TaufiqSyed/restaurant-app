@@ -1,4 +1,3 @@
-import { componentColor } from '@/constants/colors'
 import { fieldString } from '@/shared_utils/field_string'
 import { Box, Button, Text, Flex, BoxProps } from '@chakra-ui/react'
 
@@ -29,7 +28,7 @@ export const DataItem = ({
     <Box
       borderRadius='12px'
       fontSize='16px'
-      bgColor={componentColor}
+      bgColor='componentColor'
       position='relative'
       p='22px 26px'
       cursor={cursor ?? 'pointer'}

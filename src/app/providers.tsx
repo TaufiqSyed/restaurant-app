@@ -1,8 +1,18 @@
 'use client'
 
 import { theme } from '@/constants/theme'
-import { ChakraProvider } from '@chakra-ui/react'
-
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>
+import { CacheProvider } from '@chakra-ui/next-js'
+import { ChakraProvider, cookieStorageManager } from '@chakra-ui/react'
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <CacheProvider>
+      <ChakraProvider colorModeManager={cookieStorageManager} theme={theme}>
+        {children}
+      </ChakraProvider>
+    </CacheProvider>
+  )
 }

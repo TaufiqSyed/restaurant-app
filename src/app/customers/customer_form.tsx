@@ -7,76 +7,48 @@ import {
   FormErrorMessage,
   VStack,
 } from '@chakra-ui/react'
-import { IMenuItem, IEmployee } from '@/constants/interfaces'
+import { IMenuItem, ICustomer } from '@/constants/interfaces'
 import { Validator } from '@/shared_utils/validator'
 import { GenericField } from '@/components/generic_field'
 
 import '../globals.css'
 
-// employee_id: string
-// username: string
-// is_admin: boolean
+// customer_id: string
 // name: string
-// position: string
 // phone: string
-// salary: number
-// password?: string
+// email: string
 
-export default function EmployeeForm({
+export default function CustomerForm({
   initialValues,
   viewOnly,
   onSubmit,
   menuItems,
 }: {
-  initialValues: IEmployee
+  initialValues: ICustomer
   viewOnly: boolean
-  onSubmit?: (values: IEmployee) => void
+  onSubmit?: (values: ICustomer) => void
   menuItems?: IMenuItem[]
 }) {
   onSubmit = onSubmit ?? (() => {})
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: IEmployee) => onSubmit(values as IEmployee)}
+      onSubmit={(values: ICustomer) => onSubmit(values as ICustomer)}
     >
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.employee_id && touched.employee_id}
+              isInvalid={!!errors.customer_id && touched.customer_id}
             >
-              <FormLabel>Employee ID</FormLabel>
+              <FormLabel>Customer ID</FormLabel>
               <GenericField
-                key='employee_id'
-                id='employee_id'
-                validate={Validator.nonEmpty}
+                key='customer_id'
+                id='customer_id'
+                validate={Validator.posInteger}
               />
-              <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
-            </FormControl>
-            <FormControl
-              isReadOnly={viewOnly}
-              isInvalid={!!errors.username && touched.username}
-            >
-              <FormLabel>Username</FormLabel>
-              <GenericField
-                key='username'
-                id='username'
-                validate={Validator.nonEmpty}
-              />
-              <FormErrorMessage>{errors.username}</FormErrorMessage>
-            </FormControl>
-            <FormControl
-              isReadOnly={viewOnly}
-              isInvalid={!!errors.position && touched.position}
-            >
-              <FormLabel>Position</FormLabel>
-              <GenericField
-                key='position'
-                id='position'
-                validate={Validator.nonEmpty}
-              />
-              <FormErrorMessage>{errors.position}</FormErrorMessage>
+              <FormErrorMessage>{errors.customer_id}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
@@ -104,15 +76,15 @@ export default function EmployeeForm({
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.salary && touched.salary}
+              isInvalid={!!errors.email && touched.email}
             >
-              <FormLabel>Salary</FormLabel>
+              <FormLabel>Email</FormLabel>
               <GenericField
-                key='salary'
-                id='salary'
+                key='email'
+                id='email'
                 validate={Validator.posInteger}
               />
-              <FormErrorMessage>{errors.salary}</FormErrorMessage>
+              <FormErrorMessage>{errors.email}</FormErrorMessage>
             </FormControl>
             {!viewOnly && (
               <Button type='submit' colorScheme='purple' width='full' mt='23px'>

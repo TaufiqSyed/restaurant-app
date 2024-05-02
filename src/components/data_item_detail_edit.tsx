@@ -1,7 +1,4 @@
-import { componentColor } from '@/constants/colors'
 import { Box, Button, Text, Flex } from '@chakra-ui/react'
-import OrderForm from '../(orders)/order_form'
-import { ReactNode } from 'react'
 import { IFormikForm, IMenuItem } from '@/constants/interfaces'
 
 export const DataItemDetailEdit = ({
@@ -33,13 +30,13 @@ export const DataItemDetailEdit = ({
   return (
     <Box
       borderRadius='12px'
-      bgColor={componentColor}
+      bgColor='componentColor'
       position='relative'
       p='48px 32px'
       w='100%'
     >
       <Box>
-        <Button onClick={onBack} mb='30px'>
+        <Button onClick={onBack} mb='30px' colorScheme='purple'>
           {'<< Back to dashboard'}
         </Button>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>

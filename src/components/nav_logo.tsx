@@ -1,10 +1,10 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { Logo } from './logo'
 
-export const NavLogo = () => {
+export const NavLogo = ({ colorMode }: { colorMode: string }) => {
   return (
     <Flex flexDir='row' alignItems='center'>
-      <Logo />
+      <Logo colorMode={colorMode} />
       <Text
         fontWeight='bold'
         fontStyle='italic'

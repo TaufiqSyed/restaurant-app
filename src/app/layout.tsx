@@ -1,4 +1,5 @@
-import { Providers } from './providers'
+import { DarkMode, ColorModeScript, theme } from '@chakra-ui/react'
+import Providers from './providers'
 
 export default function RootLayout({
   children,
@@ -8,7 +9,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Providers>{children}</Providers>
+        <DarkMode>
+          <Providers>{children}</Providers>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        </DarkMode>
       </body>
     </html>
   )

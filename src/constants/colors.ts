@@ -1,5 +1,0 @@
-export const componentColor = '#260725'
-// export const navbarColor = '#332528'
-export const navbarColor = '#32012F'
-export const secondaryColor = '#2b0a3d'
-export const bgColor = '#1a0a1a'

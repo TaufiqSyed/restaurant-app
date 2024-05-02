@@ -1,7 +1,11 @@
 import { MockCustomerRepository } from '@/app/customers/_data/mock_customer_repository'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { IApiResponse, IOrder, IPartialOrder } from '@/constants/interfaces'
-import { randomDate, randomInteger } from '@/shared_utils/mock_random_data'
+import {
+  randomDate,
+  randomInteger,
+  randomName,
+} from '@/shared_utils/mock_random_data'
 
 // order_id: number
 // employee_id: number
@@ -27,7 +31,7 @@ export class MockOrderRepository {
       customer: undefined,
     }
   }
-  static generateMockOrder = () => {
+  static generateMockOrder = (): IOrder => {
     const menu_items = [
       MockMenuItemRepository.generateMockMenuItem(),
       MockMenuItemRepository.generateMockMenuItem(),
@@ -35,9 +39,9 @@ export class MockOrderRepository {
     ]
     const menu_item_ids = menu_items.map((e) => e.item_id)
     return {
-      order_id: randomInteger(),
-      employee_id: randomInteger(),
-      customer_id: randomInteger(),
+      order_id: randomName(),
+      employee_id: randomName(),
+      customer_id: randomName(),
       table_number: randomInteger(),
       order_date: randomDate(),
       total_price: randomInteger(),

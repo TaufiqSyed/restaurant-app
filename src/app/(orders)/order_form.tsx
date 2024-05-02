@@ -23,9 +23,8 @@ import {
 } from '@/constants/interfaces'
 import { Validator } from '@/shared_utils/validator'
 import { GenericField } from '@/components/generic_field'
-import { DatePickerField } from '../shared_components/date_picker_field'
-import { DataItem } from '../shared_components/data_item'
-import { secondaryColor } from '@/constants/colors'
+import { DatePickerField } from '../../components/date_picker_field'
+import { DataItem } from '../../components/data_item'
 import { MdDelete } from 'react-icons/md'
 // import CustomSelect from '../shared_components/custom_select'
 
@@ -65,7 +64,7 @@ export default function OrderForm({
     menu_selects: (initialValues?.menu_items ?? []).map((e) => ({
       label: e.item_name,
       value: e.item_id,
-      price: e.price,
+      price: e.price as number,
     })),
   }
 
@@ -90,8 +89,8 @@ export default function OrderForm({
               <GenericField
                 key='order_id'
                 id='order_id'
-                validate={Validator.posInteger}
-                type='number'
+                validate={Validator.nonEmpty}
+                type='text'
               />
               <FormErrorMessage>{errors.order_id}</FormErrorMessage>
             </FormControl>
@@ -103,8 +102,8 @@ export default function OrderForm({
               <GenericField
                 key='employee_id'
                 id='employee_id'
-                validate={Validator.posInteger}
-                type='number'
+                validate={Validator.nonEmpty}
+                type='text'
               />
               <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
             </FormControl>
@@ -133,8 +132,8 @@ export default function OrderForm({
               <FormLabel>Customer ID</FormLabel>
               <GenericField
                 id='customer_id'
-                validate={Validator.posInteger}
-                type='number'
+                validate={Validator.nonEmpty}
+                type='text'
               />
               <FormErrorMessage>{errors.customer_id}</FormErrorMessage>
             </FormControl>
@@ -148,7 +147,7 @@ export default function OrderForm({
                   json={initialValues.customer}
                   cursor='auto'
                   width='100%'
-                  bgColor={secondaryColor}
+                  bgColor='secondaryColor'
                   m='0'
                 />
               </>
@@ -159,11 +158,9 @@ export default function OrderForm({
             >
               <FormLabel>Menu Items</FormLabel>
               <Select
-                options={options}
+                options={options as IMultiSelect[]}
                 name='menu_selects'
-                // component={Select}
                 value={values.menu_selects ?? []}
-                // initialValues={initialValues.menu_selects ?? []}
                 onChange={(e: MultiValue<IMultiSelect>) => {
                   if (viewOnly) return
                   setFieldValue('menu_selects', e)
