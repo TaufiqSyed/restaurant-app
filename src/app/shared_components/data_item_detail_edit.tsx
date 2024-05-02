@@ -6,7 +6,7 @@ import { IFormikForm, IMenuItem } from '@/constants/interfaces'
 
 export const DataItemDetailEdit = ({
   dataHeader: datatype,
-  titleField,
+  // titleField,
   json,
   onBack,
   onSave,
@@ -16,7 +16,7 @@ export const DataItemDetailEdit = ({
   menuItems,
 }: {
   dataHeader: string
-  titleField: string
+  // titleField: string
   json: any
   onBack: () => void
   onSave: (values: any) => void
@@ -25,10 +25,11 @@ export const DataItemDetailEdit = ({
   FormikForm: IFormikForm
   menuItems?: IMenuItem[]
 }) => {
-  let fieldnames = Object.keys(json).filter((e) => e != titleField)
-  if (omitFields != null) {
-    fieldnames = fieldnames.filter((e) => !omitFields!.includes(e))
-  }
+  // let fieldnames = Object.keys(json).filter((e) => e != titleField)
+  // let fieldnames = Object.keys()
+  // if (omitFields != null) {
+  //   fieldnames = fieldnames.filter((e) => !omitFields!.includes(e))
+  // }
   return (
     <Box
       borderRadius='12px'

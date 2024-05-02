@@ -1,11 +1,7 @@
 import { MockCustomerRepository } from '@/app/customers/_data/mock_customer_repository'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
-import { IOrder } from '@/constants/interfaces'
-import {
-  randomDate,
-  randomInteger,
-  randomName,
-} from '@/shared_utils/mock_random_data'
+import { IApiResponse, IOrder, IPartialOrder } from '@/constants/interfaces'
+import { randomDate, randomInteger } from '@/shared_utils/mock_random_data'
 
 // order_id: number
 // employee_id: number
@@ -18,6 +14,19 @@ import {
 // menu_item_ids?: number[]
 
 export class MockOrderRepository {
+  static emptyOrder = (): IPartialOrder => {
+    return {
+      order_id: '',
+      employee_id: '',
+      customer_id: '',
+      table_number: '',
+      order_date: '',
+      total_price: '',
+      menu_items: [],
+      menu_item_ids: [],
+      customer: undefined,
+    }
+  }
   static generateMockOrder = () => {
     const menu_items = [
       MockMenuItemRepository.generateMockMenuItem(),
@@ -45,5 +54,23 @@ export class MockOrderRepository {
   }
   static fetchOrderById = async (id: number): Promise<IOrder> => {
     return MockOrderRepository.generateMockOrder()
+  }
+  static createOrder = async (order: IOrder): Promise<IApiResponse> => {
+    return {
+      success: true,
+    }
+    return {
+      success: false,
+      message: 'Invalid Customer ID',
+    }
+  }
+  static updateOrder = async (order: IOrder): Promise<IApiResponse> => {
+    return {
+      success: true,
+    }
+    return {
+      success: false,
+      message: 'Invalid Customer ID',
+    }
   }
 }

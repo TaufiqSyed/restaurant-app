@@ -11,6 +11,7 @@ interface Props {
   selectedDate: Date | undefined
   showPopperArrow?: boolean
   showTimeSelect?: boolean
+  readOnly?: boolean
 }
 
 const DatePicker = ({
@@ -19,6 +20,7 @@ const DatePicker = ({
   isClearable = false,
   showPopperArrow = false,
   showTimeSelect,
+  readOnly = false,
   ...props
 }: Props & HTMLAttributes<HTMLElement>) => {
   const isLight = useColorMode().colorMode === 'light' //you can check what theme you are using right now however you want
@@ -34,6 +36,7 @@ const DatePicker = ({
         className='react-datapicker__input-text' //input is white by default and there is no already defined class for it so I created a new one
         showTimeSelect={showTimeSelect}
         {...(props as any)}
+        readOnly={readOnly}
       />
     </div>
   )

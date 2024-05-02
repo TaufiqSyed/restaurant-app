@@ -29,6 +29,19 @@ export interface IMenuItem {
   category?: string
 }
 
+export interface IPartialOrder {
+  order_id: number | ''
+  employee_id: number | ''
+  customer_id: number | ''
+  table_number: number | ''
+  order_date: Date | ''
+  total_price: number | ''
+  menu_items: IMenuItem[]
+  customer?: ICustomer
+  menu_item_ids?: number[]
+  menu_selects?: IMultiSelect[]
+}
+
 export interface IOrder {
   order_id: number
   employee_id: number
@@ -48,7 +61,7 @@ export interface ILogin {
 }
 
 export interface IFormikFormProps {
-  initialValues: IOrder
+  initialValues: any
   viewOnly: boolean
   onSubmit?: (values: IOrder) => void
   menuItems?: IMenuItem[]
@@ -61,3 +74,8 @@ export interface IMultiSelect {
 }
 
 export type IFormikForm = (props: IFormikFormProps) => JSX.Element
+
+export interface IApiResponse {
+  success: boolean
+  message?: string
+}

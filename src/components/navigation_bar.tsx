@@ -37,6 +37,9 @@ import { HrefLink } from './href_link'
 import { IUser } from '@/constants/interfaces'
 import { useMediaQuery } from '@/shared_utils/use_media_query'
 import { componentColor, navbarColor } from '@/constants/colors'
+import { MockOrderRepository } from '@/app/(orders)/_data/mock_order_repository'
+import { Logo } from './logo'
+import { NavLogo } from './nav_logo'
 // import '@fontsource/open-sans/700.css'
 
 // interface Props {
@@ -54,9 +57,34 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string }) => {
   return <HrefLink href={href}>{children}</HrefLink>
 }
 
+const hrefToEntityName = (root_href: string) => {
+  switch (root_href) {
+    case '/':
+      return 'Order'
+    case '/employees':
+      return 'Employee'
+    case '/customers':
+      return 'Customer'
+    case '/menu':
+      return 'Menu Item'
+  }
+}
+
+const hrefToEntityOnCreate = (root_href: string) => {
+  // switch (root_href) {
+  //   case '/':
+  //     return
+  //   case '/employees':
+  //     return EmployeeRepository.createEmployee
+  //   case '/customers':
+  //     return CustomerRepository.create
+  //   case '/menu':
+  //     return OrderRepository.createOrder
+  // }
+  return () => {}
+}
+
 export function NavigationBar({ root_href }: { root_href: string }) {
-  // const [isLargerThan700] = useMediaQuery('(min-width: 700px)')
-  // const [isLargerThan600] = useMediaQuery('(min-width: 600px)')
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [navOpen, setNavOpen] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -93,7 +121,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
       boxShadow='0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
     >
       {!!user ? (
-        <>
+        <Flex flexDir='row' alignItems='center'>
           <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
             <IconButton
               size={'md'}
@@ -102,19 +130,9 @@ export function NavigationBar({ root_href }: { root_href: string }) {
               display={{ md: 'none' }}
               onClick={isOpen ? onClose : onOpen}
             />
-            <HStack spacing={8} alignItems={'center'}>
-              <Box w='100%' maxW='24px' minW='0' />
+            <HStack spacing={8} alignItems={'center'} p='0 56px'>
               <HrefLink href='/'>
-                <Text
-                  fontWeight='bold'
-                  fontStyle='italic'
-                  fontSize='18px'
-                  lineHeight='1'
-                  mr='50px'
-                  w='67px'
-                >
-                  Bon Appétit
-                </Text>
+                <NavLogo />
               </HrefLink>
               <HStack
                 as={'nav'}
@@ -158,7 +176,16 @@ export function NavigationBar({ root_href }: { root_href: string }) {
               </Stack>
             </Box>
           ) : null}
-        </>
+          {!isOpen && (
+            <Box ml='auto' mr='50px'>
+              <NavLink href={root_href + 'create'}>
+                <Button colorScheme='blue'>
+                  Create {hrefToEntityName(root_href)}
+                </Button>
+              </NavLink>
+            </Box>
+          )}
+        </Flex>
       ) : (
         <>
           <Flex h={12} alignItems={'center'} justifyContent={'space-between'}>

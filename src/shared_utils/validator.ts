@@ -1,13 +1,12 @@
-import { isInteger } from 'formik'
-
 export class Validator {
-  static posInteger = (value: number) => {
+  static posInteger = (value: any) => {
     let error
-    if (!isInteger(value)) {
+    if (!Number.isInteger(value)) {
       error = 'Employee ID must be an integer'
     }
     if (value <= 0) {
       error = 'Employee ID cannot be negative'
     }
+    return error
   }
 }

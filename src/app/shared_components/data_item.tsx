@@ -18,6 +18,7 @@ export const DataItem = ({
   cursor?: string
   titleFontSize?: string
 } & BoxProps) => {
+  console.log('djklafj' + JSON.stringify(json))
   let title: any = json[titleField]
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {

@@ -15,7 +15,12 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { isNumeric } from '@/shared_utils/is_numeric'
-import { IMenuItem, IMultiSelect, IOrder } from '@/constants/interfaces'
+import {
+  IMenuItem,
+  IMultiSelect,
+  IOrder,
+  IPartialOrder,
+} from '@/constants/interfaces'
 import { Validator } from '@/shared_utils/validator'
 import { GenericField } from '@/components/generic_field'
 import { DatePickerField } from '../shared_components/date_picker_field'
@@ -44,7 +49,7 @@ export default function OrderForm({
   onSubmit,
   menuItems,
 }: {
-  initialValues: IOrder
+  initialValues: IPartialOrder
   viewOnly: boolean
   onSubmit?: (values: IOrder) => void
   menuItems?: IMenuItem[]
@@ -68,9 +73,12 @@ export default function OrderForm({
   console.log('initval' + JSON.stringify(initialValues))
   console.log('menu' + JSON.stringify(menuItems))
   console.log('fjdaklfj ' + JSON.stringify(initialValues?.menu_selects))
-
+  onSubmit = onSubmit ?? (() => {})
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit ?? (() => {})}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values: IPartialOrder) => onSubmit(values as IOrder)}
+    >
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
@@ -80,6 +88,7 @@ export default function OrderForm({
             >
               <FormLabel>Order ID</FormLabel>
               <GenericField
+                key='order_id'
                 id='order_id'
                 validate={Validator.posInteger}
                 type='number'
@@ -92,6 +101,7 @@ export default function OrderForm({
             >
               <FormLabel>Employee ID</FormLabel>
               <GenericField
+                key='employee_id'
                 id='employee_id'
                 validate={Validator.posInteger}
                 type='number'
@@ -105,15 +115,16 @@ export default function OrderForm({
             >
               <FormLabel>Table Number</FormLabel>
               <GenericField
+                key='table_number'
                 id='table_number'
                 validate={Validator.posInteger}
                 type='number'
               />
               <FormErrorMessage>{errors.table_number}</FormErrorMessage>
             </FormControl>
-            <FormControl isReadOnly={viewOnly}>
+            <FormControl>
               <FormLabel>Order Date</FormLabel>
-              <DatePickerField name='order_date' />
+              <DatePickerField name='order_date' isReadOnly={viewOnly} />
             </FormControl>
             <FormControl
               isInvalid={!!errors.customer_id && touched.customer_id}
@@ -127,33 +138,46 @@ export default function OrderForm({
               />
               <FormErrorMessage>{errors.customer_id}</FormErrorMessage>
             </FormControl>
-            <Text fontSize='12px' mt='16px' pl='8px' lineHeight='1' p='0'>
-              Customer before update:
-            </Text>
-            <DataItem
-              titleField='customer_id'
-              json={initialValues.customer}
-              cursor='auto'
-              width='100%'
-              bgColor={secondaryColor}
-              m='0'
-            />
-
-            <Select
-              options={options}
-              name='menu_selects'
-              // component={Select}
-              value={values.menu_selects ?? []}
-              // initialValues={initialValues.menu_selects ?? []}
-              onChange={(e: MultiValue<IMultiSelect>) => {
-                if (viewOnly) return
-                setFieldValue('menu_selects', e)
-              }}
-              isMulti
-              className='select-form'
+            {initialValues.customer_id && (
+              <>
+                <Text fontSize='12px' mt='16px' pl='8px' lineHeight='1' p='0'>
+                  Customer before update:
+                </Text>
+                <DataItem
+                  titleField='customer_id'
+                  json={initialValues.customer}
+                  cursor='auto'
+                  width='100%'
+                  bgColor={secondaryColor}
+                  m='0'
+                />
+              </>
+            )}
+            <FormControl
+              isInvalid={values.menu_selects?.length == 0}
               isReadOnly={viewOnly}
-              isClearable={!viewOnly}
-            />
+            >
+              <FormLabel>Menu Items</FormLabel>
+              <Select
+                options={options}
+                name='menu_selects'
+                // component={Select}
+                value={values.menu_selects ?? []}
+                // initialValues={initialValues.menu_selects ?? []}
+                onChange={(e: MultiValue<IMultiSelect>) => {
+                  if (viewOnly) return
+                  setFieldValue('menu_selects', e)
+                }}
+                isMulti
+                className='select-form'
+                isReadOnly={viewOnly}
+                isClearable={!viewOnly}
+              />
+              <FormErrorMessage>
+                At least one menu item needed for an order
+              </FormErrorMessage>
+            </FormControl>
+
             {/* <Field
               options={options}
               name='menu_selects'
