@@ -18,6 +18,7 @@ export const Container = ({
       gridColumnGap='40px'
       p='150px 40px 50px 40px'
       bg='background'
+      minH='100vh'
     >
       <NavigationBar root_href={root_href} />
       {children}

@@ -16,17 +16,14 @@ import { ILogin } from '@/constants/interfaces'
 export default function LoginForm({
   initialValues,
   viewOnly,
+  onSubmit,
 }: {
   initialValues: ILogin
   viewOnly: boolean
+  onSubmit: (values: any) => void
 }) {
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2))
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ handleSubmit, errors, touched }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>

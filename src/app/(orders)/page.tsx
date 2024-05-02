@@ -16,6 +16,11 @@ export default function OrdersPage() {
   const router = useRouter()
 
   useEffect(() => {
+    const userStr = localStorage.getItem('user')
+    if (userStr == null || userStr == '') {
+      router.push('/login')
+      return
+    }
     MockOrderRepository.fetchAllOrders().then((orders) => {
       setOrders(orders)
       setLoading(false)

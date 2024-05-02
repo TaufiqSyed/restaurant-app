@@ -67,7 +67,7 @@ const hrefToEntityName = (root_href: string) => {
     case '/customers/':
       return 'Customer'
     case '/menu/':
-      return 'Menu Item'
+      return 'Menu'
   }
 }
 
@@ -96,7 +96,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
   useEffect(() => {
     let storedUser = null
     const text = localStorage.getItem('user')
-    if (text != null) storedUser = JSON.parse(text) as IUser
+    if (text != null && text != '') storedUser = JSON.parse(text) as IUser
     setUser(storedUser)
     setLoading(false)
   }, [])
@@ -192,11 +192,16 @@ export function NavigationBar({ root_href }: { root_href: string }) {
       ) : (
         <>
           <Flex h={12} alignItems={'center'} justifyContent={'space-between'}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Flex
+              ml='auto'
+              mr='50px'
+              h={16}
+              alignItems={'center'}
+              justifyContent={'space-between'}
+            >
               <HrefLink href='/login' ml='auto'>
-                Log In
+                <Button colorScheme='purple'>Log In</Button>
               </HrefLink>
-              <HrefLink href='/register'>Sign Up</HrefLink>
             </Flex>
           </Flex>
         </>
