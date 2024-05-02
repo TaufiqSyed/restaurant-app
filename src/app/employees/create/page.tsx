@@ -20,13 +20,13 @@ export default function EmployeeCreatePage() {
         dataHeader='Create Employee'
         json={emptyEmployee!}
         onBack={() => {
-          router.push('/')
+          router.push('/employees/')
         }}
         onSave={(values: IEmployee) => {
           console.log(values)
         }}
         onCancel={() => {
-          router.push('/')
+          router.push('/employees/')
         }}
         FormikForm={EmployeeForm}
         omitFields={undefined}

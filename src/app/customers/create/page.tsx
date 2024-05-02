@@ -20,13 +20,13 @@ export default function CustomerCreatePage() {
         dataHeader='Create Customer'
         json={emptyCustomer!}
         onBack={() => {
-          router.push('/')
+          router.push('/customers/')
         }}
         onSave={(values: ICustomer) => {
           console.log(values)
         }}
         onCancel={() => {
-          router.push('/')
+          router.push('/customers/')
         }}
         FormikForm={CustomerForm}
         omitFields={undefined}
