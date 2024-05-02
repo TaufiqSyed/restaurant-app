@@ -1,8 +1,7 @@
 import { Box, Button, Text, Flex, IconButton, Icon } from '@chakra-ui/react'
-import { MdEdit } from 'react-icons/md'
 import LoginForm from './login_form'
 
-export const LoginBox = () => {
+export const LoginBox = ({ onSubmit }: { onSubmit: (values: any) => void }) => {
   return (
     <Box
       borderRadius='12px'
@@ -23,6 +22,7 @@ export const LoginBox = () => {
         <LoginForm
           initialValues={{ email: '', password: '' }}
           viewOnly={false}
+          onSubmit={onSubmit}
         />
       </Box>
     </Box>

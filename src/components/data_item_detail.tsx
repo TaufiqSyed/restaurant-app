@@ -1,4 +1,3 @@
-import { componentColor } from '@/constants/colors'
 import {
   Box,
   Button,

@@ -1,6 +1,6 @@
 // import { MockCustomerRepository } from '@/app/customers/_data/mock_customer_repository'
 // import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
-// import { IOrder, IOrder } from '@/constants/interfaces'
+// import { IOrder, IPartialOrder } from '@/constants/interfaces'
 // import { randomDate, randomInteger } from '@/shared_utils/mock_random_data'
 
 // // order_id: number
@@ -14,7 +14,7 @@
 // // menu_item_ids?: number[]
 
 // export class OrderRepository {
-//   static emptyOrder = (): IOrder => {
+//   static emptyOrder = (): IPartialOrder => {
 //     return {
 //       order_id: '',
 //       employee_id: '',

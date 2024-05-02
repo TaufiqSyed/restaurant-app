@@ -2,7 +2,7 @@
 
 import { Container } from '@/components/container'
 import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
-import { IMenuItem, IOrder, IOrder } from '@/constants/interfaces'
+import { IMenuItem, IOrder, IPartialOrder } from '@/constants/interfaces'
 import { useParams, useRouter } from 'next/navigation'
 import { MockOrderRepository } from '../_data/mock_order_repository'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
