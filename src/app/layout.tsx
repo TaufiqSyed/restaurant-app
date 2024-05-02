@@ -8,6 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <title>Bon Appétit</title>
+        <link rel='icon' type='image/x-icon' href='/logo-dark.svg' />
+      </head>
       <body>
         <DarkMode>
           <Providers>{children}</Providers>

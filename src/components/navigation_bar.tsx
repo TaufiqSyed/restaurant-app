@@ -106,7 +106,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
     e.preventDefault()
     localStorage.setItem('user', JSON.stringify(user))
   }
-  if (loading) return <Box></Box>
+  // if (loading) return <Box></Box>
   return (
     <Box
       className={navOpen ? 'openNavbar' : 'closeNavbar'}
