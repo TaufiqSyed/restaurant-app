@@ -35,7 +35,7 @@ export default function EmployeeForm({
                 name='employee_id'
                 type='employee_id'
                 variant='filled'
-                readonly
+                readOnly
               />
             </FormControl>
             <FormControl

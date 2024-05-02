@@ -1,47 +1,63 @@
-'use client'
+// 'use client'
 
-import { DataItemDetail } from '@/app/shared_components/data_item_detail'
-import { DataItemDetailEdit } from '@/app/shared_components/data_item_detail_edit'
-import { Box, Grid } from '@chakra-ui/react'
-import OrderForm from '../../order_form'
-import { useRouter } from 'next/navigation'
+import Order from '../order'
 
-export default function OrderDetailPage() {
-  const obj = {
-    userId: '12345',
-    username: 'taufiqs',
-    password: 'abcdef',
-    isAdmin: 'false',
-    position: 'HR Coordinator',
-    contactInformation: '9715434534',
-    salary: '22550',
-  }
-  const router = useRouter()
-  return (
-    <Grid
-      position='absolute'
-      top='150px'
-      w='100%'
-      gridTemplateColumns='repeat(auto-fit, minmax(350px, 1fr))'
-      gridRowGap='20px'
-      gridColumnGap='40px'
-      p='0 40px'
-    >
-      {/* <OrderForm initialValues={{ order_id: '1234', employee_id: '1234' }} /> */}
-      <DataItemDetailEdit
-        dataHeader='User Information'
-        titleField='username'
-        omitFields={['password']}
-        json={obj}
-        onBack={() => {
-          router.push('/')
-        }}
-        onSave={() => {}}
-        onCancel={() => {
-          router.push(`/${obj['userId']}`)
-        }}
-        FormikForm={OrderForm}
-      />
-    </Grid>
-  )
+// import { DataItemDetail } from '@/app/shared_components/data_item_detail'
+// import { DataItemDetailEdit } from '@/app/shared_components/data_item_detail_edit'
+// import { Box, Grid } from '@chakra-ui/react'
+// import OrderForm from '../../order_form'
+// import { useRouter } from 'next/navigation'
+// import { MockOrderRepository } from '../../_data/mock_order_repository'
+// import { IMenuItem, IOrder } from '@/constants/interfaces'
+// import { useState, useEffect } from 'react'
+// import { Container } from '@/app/shared_components/container'
+// import { LoadingSpinner } from '@/app/shared_components/loading_spinner'
+// import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
+
+// export default function OrderDetailPage() {
+//   const [order, setOrder] = useState<IOrder | null>(null)
+//   const [menuItems, setMenuItems] = useState<IMenuItem[]>([])
+//   const [loading, setLoading] = useState(true)
+//   const router = useRouter()
+
+//   useEffect(() => {
+//     init()
+//   }, [])
+
+//   const init = async () => {
+//     const [order_, menuItems_] = await Promise.all([
+//       MockOrderRepository.fetchOrderById(1),
+//       MockMenuItemRepository.fetchAllMenuItems(),
+//     ])
+//     setOrder(order_)
+//     setMenuItems(menuItems_)
+//     setLoading(false)
+//   }
+
+//   if (loading) return <LoadingSpinner />
+//   return (
+//     <Container root_href='/'>
+//       <DataItemDetailEdit
+//         dataHeader='Order Information'
+//         titleField='order_id'
+//         json={order!}
+//         onBack={() => {
+//           router.push('/')
+//         }}
+//         onSave={(values: IOrder) => {
+//           console.log(values)
+//         }}
+//         onCancel={() => {
+//           router.push(`/${order!.order_id}`)
+//         }}
+//         FormikForm={OrderForm}
+//         omitFields={undefined}
+//         menuItems={menuItems!}
+//       />
+//     </Container>
+//   )
+// }
+
+export default function OrderDetailEditPage() {
+  return <Order isEdit={true} />
 }

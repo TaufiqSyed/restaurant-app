@@ -1,6 +1,8 @@
+'use client'
 import { Formik, Field, isInteger } from 'formik'
 import {
   Box,
+  Text,
   Button,
   Checkbox,
   Flex,
@@ -9,9 +11,22 @@ import {
   FormErrorMessage,
   Input,
   VStack,
+  IconButton,
+  Icon,
 } from '@chakra-ui/react'
 import { isNumeric } from '@/shared_utils/is_numeric'
-import { IOrder } from '@/constants/interfaces'
+import { IMenuItem, IMultiSelect, IOrder } from '@/constants/interfaces'
+import { Validator } from '@/shared_utils/validator'
+import { GenericField } from '@/components/generic_field'
+import { DatePickerField } from '../shared_components/date_picker_field'
+import { DataItem } from '../shared_components/data_item'
+import { secondaryColor } from '@/constants/colors'
+import { MdDelete } from 'react-icons/md'
+// import CustomSelect from '../shared_components/custom_select'
+
+import '../globals.css'
+import { MultiValue, Select } from 'chakra-react-select'
+import { randomName } from '@/shared_utils/mock_random_data'
 
 // order_id: number
 // employee_id: number
@@ -27,51 +42,144 @@ export default function OrderForm({
   initialValues,
   viewOnly,
   onSubmit,
+  menuItems,
 }: {
   initialValues: IOrder
   viewOnly: boolean
   onSubmit?: (values: IOrder) => void
+  menuItems?: IMenuItem[]
 }) {
+  const options = (menuItems ?? []).map((e) => ({
+    label: e.item_name,
+    value: e.item_id,
+    price: e.price,
+  }))
+
+  initialValues = {
+    ...initialValues,
+    menu_selects: (initialValues?.menu_items ?? []).map((e) => ({
+      label: e.item_name,
+      value: e.item_id,
+      price: e.price,
+    })),
+  }
+
+  console.log('options ' + JSON.stringify(options))
+  console.log('initval' + JSON.stringify(initialValues))
+  console.log('menu' + JSON.stringify(menuItems))
+  console.log('fjdaklfj ' + JSON.stringify(initialValues?.menu_selects))
+
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit ?? (() => {})}>
-      {({ handleSubmit, errors, touched }) => (
+      {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
-            <FormControl isReadOnly={viewOnly}>
-              <FormLabel htmlFor='order_id'>Order ID</FormLabel>
-              <Field
-                as={Input}
+            <FormControl
+              isReadOnly={viewOnly}
+              isInvalid={!!errors.order_id && touched.order_id}
+            >
+              <FormLabel>Order ID</FormLabel>
+              <GenericField
                 id='order_id'
-                name='order_id'
-                // type='order_id'
+                validate={Validator.posInteger}
                 type='number'
-                variant='filled'
-                readonly
               />
+              <FormErrorMessage>{errors.order_id}</FormErrorMessage>
             </FormControl>
             <FormControl
               isInvalid={!!errors.employee_id && touched.employee_id}
               isReadOnly={viewOnly}
             >
-              <FormLabel htmlFor='password'>Employee ID</FormLabel>
-              <Field
-                as={Input}
+              <FormLabel>Employee ID</FormLabel>
+              <GenericField
                 id='employee_id'
-                name='employee_id'
-                // type='employee_id'
+                validate={Validator.posInteger}
                 type='number'
-                variant='filled'
-                validate={(value: number) => {
-                  let error
-                  if (!isInteger(value)) {
-                    error = 'Employee ID must be an integer'
-                  }
-                  if (value <= 0) {
-                    error = 'Employee ID cannot be negative'
-                  }
-                }}
               />
               <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl
+              isInvalid={!!errors.table_number && touched.table_number}
+              isReadOnly={viewOnly}
+            >
+              <FormLabel>Table Number</FormLabel>
+              <GenericField
+                id='table_number'
+                validate={Validator.posInteger}
+                type='number'
+              />
+              <FormErrorMessage>{errors.table_number}</FormErrorMessage>
+            </FormControl>
+            <FormControl isReadOnly={viewOnly}>
+              <FormLabel>Order Date</FormLabel>
+              <DatePickerField name='order_date' />
+            </FormControl>
+            <FormControl
+              isInvalid={!!errors.customer_id && touched.customer_id}
+              isReadOnly={viewOnly}
+            >
+              <FormLabel>Customer ID</FormLabel>
+              <GenericField
+                id='customer_id'
+                validate={Validator.posInteger}
+                type='number'
+              />
+              <FormErrorMessage>{errors.customer_id}</FormErrorMessage>
+            </FormControl>
+            <Text fontSize='12px' mt='16px' pl='8px' lineHeight='1' p='0'>
+              Customer before update:
+            </Text>
+            <DataItem
+              titleField='customer_id'
+              json={initialValues.customer}
+              cursor='auto'
+              width='100%'
+              bgColor={secondaryColor}
+              m='0'
+            />
+
+            <Select
+              options={options}
+              name='menu_selects'
+              // component={Select}
+              value={values.menu_selects ?? []}
+              // initialValues={initialValues.menu_selects ?? []}
+              onChange={(e: MultiValue<IMultiSelect>) => {
+                if (viewOnly) return
+                setFieldValue('menu_selects', e)
+              }}
+              isMulti
+              className='select-form'
+              isReadOnly={viewOnly}
+              isClearable={!viewOnly}
+            />
+            {/* <Field
+              options={options}
+              name='menu_selects'
+              component={Select}
+              value={values.menu_selects ?? []}
+              // initialValues={initialValues.menu_selects ?? []}
+              onChange={(e: IMultiSelect[]) => setFieldValue('menu_selects', e)}
+              isMulti
+              className='select-form'
+              isReadOnly={viewOnly}
+            /> */}
+            <FormControl isReadOnly={true}>
+              <FormLabel>Total Price</FormLabel>
+              <Field
+                as={Input}
+                value={
+                  viewOnly
+                    ? values.total_price
+                    : (values.menu_selects ?? []).reduce(
+                        (a, b) => a + b.price!,
+                        0
+                      )
+                }
+                type={'number'}
+                variant='filled'
+              />
             </FormControl>
             {!viewOnly && (
               <Button type='submit' colorScheme='purple' width='full' mt='23px'>

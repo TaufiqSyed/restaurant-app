@@ -1,18 +1,23 @@
 import { componentColor } from '@/constants/colors'
 import { fieldString } from '@/shared_utils/field_string'
-import { Box, Button, Text, Flex } from '@chakra-ui/react'
+import { Box, Button, Text, Flex, BoxProps } from '@chakra-ui/react'
 
 export const DataItem = ({
   titleField,
   json,
   onClick,
   omitFields,
+  cursor,
+  titleFontSize,
+  ...props
 }: {
   titleField: string
   json: any
-  onClick: () => void
+  onClick?: () => void
   omitFields?: string[]
-}) => {
+  cursor?: string
+  titleFontSize?: string
+} & BoxProps) => {
   let title: any = json[titleField]
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
@@ -22,18 +27,25 @@ export const DataItem = ({
   return (
     <Box
       borderRadius='12px'
+      fontSize='16px'
       bgColor={componentColor}
       position='relative'
       p='22px 26px'
-      cursor='pointer'
+      cursor={cursor ?? 'pointer'}
       onClick={onClick}
+      {...props}
     >
       <Box>
-        <Text fontSize='18px' fontWeight='bold' mb='4px' onClick={onClick}>
+        <Text
+          fontSize={titleFontSize ?? '18px'}
+          fontWeight='bold'
+          mb='4px'
+          onClick={onClick}
+        >
           {'@' + title}
         </Text>
       </Box>
-      <Box fontSize='16px'>
+      <Box>
         {fieldnames.map((attrname, idx) => {
           return (
             <Flex

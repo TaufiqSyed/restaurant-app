@@ -19,6 +19,12 @@ import {
 
 export class MockOrderRepository {
   static generateMockOrder = () => {
+    const menu_items = [
+      MockMenuItemRepository.generateMockMenuItem(),
+      MockMenuItemRepository.generateMockMenuItem(),
+      MockMenuItemRepository.generateMockMenuItem(),
+    ]
+    const menu_item_ids = menu_items.map((e) => e.item_id)
     return {
       order_id: randomInteger(),
       employee_id: randomInteger(),
@@ -26,11 +32,8 @@ export class MockOrderRepository {
       table_number: randomInteger(),
       order_date: randomDate(),
       total_price: randomInteger(),
-      menu_items: [
-        MockMenuItemRepository.generateMockMenuItem(),
-        MockMenuItemRepository.generateMockMenuItem(),
-        MockMenuItemRepository.generateMockMenuItem(),
-      ],
+      menu_items,
+      menu_item_ids,
       customer: MockCustomerRepository.generateMockCustomer(),
     }
   }

@@ -3,7 +3,6 @@
 import { DataItemDetail } from '@/app/shared_components/data_item_detail'
 import { DataItemDetailEdit } from '@/app/shared_components/data_item_detail_edit'
 import { Box, Grid } from '@chakra-ui/react'
-import OrderForm from '../../order_form'
 import { useRouter } from 'next/navigation'
 
 export default function OrderDetailPage() {
@@ -40,7 +39,7 @@ export default function OrderDetailPage() {
         onCancel={() => {
           router.push(`/${obj['userId']}`)
         }}
-        FormikForm={OrderForm}
+        FormikForm={}
       />
     </Grid>
   )

@@ -2,7 +2,7 @@ import { componentColor } from '@/constants/colors'
 import { Box, Button, Text, Flex } from '@chakra-ui/react'
 import OrderForm from '../(orders)/order_form'
 import { ReactNode } from 'react'
-import { IFormikForm } from '@/constants/interfaces'
+import { IFormikForm, IMenuItem } from '@/constants/interfaces'
 
 export const DataItemDetailEdit = ({
   dataHeader: datatype,
@@ -13,22 +13,22 @@ export const DataItemDetailEdit = ({
   onCancel,
   omitFields,
   FormikForm,
+  menuItems,
 }: {
   dataHeader: string
   titleField: string
   json: any
   onBack: () => void
-  onSave: () => void
+  onSave: (values: any) => void
   onCancel: () => void
   omitFields: string[] | null | undefined
   FormikForm: IFormikForm
+  menuItems?: IMenuItem[]
 }) => {
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
     fieldnames = fieldnames.filter((e) => !omitFields!.includes(e))
   }
-  let fieldsvals: any[] = fieldnames.map((e) => json[e])
-  let title: any = json[titleField]
   return (
     <Box
       borderRadius='12px'
@@ -36,7 +36,6 @@ export const DataItemDetailEdit = ({
       position='relative'
       p='48px 32px'
       w='100%'
-      h='550px'
     >
       <Box>
         <Button onClick={onBack} mb='30px'>
@@ -49,7 +48,12 @@ export const DataItemDetailEdit = ({
         </Flex>
       </Box>
       <Box fontSize='22px' mt='12px'>
-        <FormikForm initialValues={json} viewOnly={false} onSubmit={onSave} />
+        <FormikForm
+          initialValues={json}
+          viewOnly={false}
+          onSubmit={onSave}
+          menuItems={menuItems}
+        />
         <Button onClick={onCancel} width='full' mt='14px'>
           Cancel
         </Button>
