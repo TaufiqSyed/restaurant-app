@@ -9,6 +9,7 @@ import { IMenuItem } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { LoadingSpinner } from '../../components/loading_spinner'
 import { MockMenuItemRepository } from './_data/mock_menu_item_repository'
+import { MenuItemRepository } from './_data/menu_item_repository'
 
 export default function MenuItemsPage() {
   const [menuitems, setMenuItems] = useState<IMenuItem[]>([])
@@ -16,7 +17,8 @@ export default function MenuItemsPage() {
   const router = useRouter()
 
   useEffect(() => {
-    MockMenuItemRepository.fetchAllMenuItems().then((menuitems) => {
+    // Mock
+    MenuItemRepository.fetchAllMenuItems().then((menuitems) => {
       setMenuItems(menuitems)
       setLoading(false)
     })

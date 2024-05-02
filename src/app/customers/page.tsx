@@ -9,6 +9,7 @@ import { ICustomer } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { MockCustomerRepository } from './_data/mock_customer_repository'
 import { LoadingSpinner } from '../../components/loading_spinner'
+import { CustomerRepository } from './_data/customer_repository'
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<ICustomer[]>([])
@@ -16,8 +17,10 @@ export default function CustomersPage() {
   const router = useRouter()
 
   useEffect(() => {
-    MockCustomerRepository.fetchAllCustomers().then((customers) => {
-      setCustomers(customers)
+    // Mock
+    CustomerRepository.fetchAllCustomers().then((customers_) => {
+      setCustomers(customers_)
+      console.log('customer customer ' + customers_)
       setLoading(false)
     })
   }, [])

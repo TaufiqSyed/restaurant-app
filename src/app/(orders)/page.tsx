@@ -9,6 +9,7 @@ import { IOrder } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { MockOrderRepository } from './_data/mock_order_repository'
 import { LoadingSpinner } from '../../components/loading_spinner'
+import { OrderRepository } from './_data/order_repository'
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<IOrder[]>([])
@@ -21,7 +22,8 @@ export default function OrdersPage() {
       router.push('/login')
       return
     }
-    MockOrderRepository.fetchAllOrders().then((orders) => {
+    // Mock
+    OrderRepository.fetchAllOrders().then((orders) => {
       setOrders(orders)
       setLoading(false)
     })

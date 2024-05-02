@@ -68,10 +68,6 @@ export default function OrderForm({
     })),
   }
 
-  console.log('options ' + JSON.stringify(options))
-  console.log('initval' + JSON.stringify(initialValues))
-  console.log('menu' + JSON.stringify(menuItems))
-  console.log('fjdaklfj ' + JSON.stringify(initialValues?.menu_selects))
   onSubmit = onSubmit ?? (() => {})
   return (
     <Formik

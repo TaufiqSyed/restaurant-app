@@ -1,9 +1,10 @@
 export class ApiRoutes {
-  static basePath = 'http://localhost:3000'
-  static apiV1 = `${ApiRoutes.basePath}/api/v1`
-  static orders = `${ApiRoutes.apiV1}/orders`
-  static customers = `${ApiRoutes.apiV1}/customers`
-  static employees = `${ApiRoutes.apiV1}/employees`
+  static basePath = 'http://localhost:5000'
+  static apiV1 = `${ApiRoutes.basePath}`
+  // static apiV1 = `${ApiRoutes.basePath}/api/v1`
+  static orders = `${ApiRoutes.apiV1}/order`
+  static customers = `${ApiRoutes.apiV1}/customer`
+  static employees = `${ApiRoutes.apiV1}/employee`
   static menuItems = `${ApiRoutes.apiV1}/menu`
 
   static orderById = (id: string) => `${ApiRoutes.orders}/${id}`

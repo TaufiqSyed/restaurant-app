@@ -10,6 +10,7 @@ import { MockEmployeeRepository } from '../_data/mock_employee_repository'
 import { LoadingSpinner } from '@/components/loading_spinner'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
+import { EmployeeRepository } from '../_data/employee_repository'
 
 export default function Employee({
   isEdit,
@@ -27,7 +28,8 @@ export default function Employee({
   }, [])
 
   const init = async () => {
-    const employee_ = await MockEmployeeRepository.fetchEmployeeById(1)
+    const employee_ = await // Mock
+    EmployeeRepository.fetchEmployeeById('abcdef')
     setEmployee(employee_)
     setLoading(false)
   }

@@ -9,6 +9,7 @@ import MenuItemForm from '../menu_item_form'
 import { LoadingSpinner } from '@/components/loading_spinner'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
+import { MenuItemRepository } from '../_data/menu_item_repository'
 
 export default function MenuItem({
   isEdit,
@@ -26,7 +27,8 @@ export default function MenuItem({
   }, [])
 
   const init = async () => {
-    const menuitem_ = await MockMenuItemRepository.fetchMenuItemById('abc')
+    const menuitem_ = await // Mock
+    MenuItemRepository.fetchMenuItemById('abc')
     setMenuItem(menuitem_)
     setLoading(false)
   }

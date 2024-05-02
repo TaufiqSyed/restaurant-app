@@ -4,7 +4,6 @@ import { MdDarkMode } from 'react-icons/md'
 export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
-  console.log('is dark mode = ' + isDark)
   return (
     <IconButton
       mr='12px'

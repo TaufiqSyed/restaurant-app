@@ -9,6 +9,7 @@ import { IEmployee } from '@/constants/interfaces'
 import { useState, useEffect } from 'react'
 import { MockEmployeeRepository } from './_data/mock_employee_repository'
 import { LoadingSpinner } from '../../components/loading_spinner'
+import { EmployeeRepository } from './_data/employee_repository'
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState<IEmployee[]>([])
@@ -16,7 +17,8 @@ export default function EmployeesPage() {
   const router = useRouter()
 
   useEffect(() => {
-    MockEmployeeRepository.fetchAllEmployees().then((employees) => {
+    // Mock
+    EmployeeRepository.fetchAllEmployees().then((employees) => {
       setEmployees(employees)
       setLoading(false)
     })

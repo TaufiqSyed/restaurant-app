@@ -9,6 +9,7 @@ import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_reposito
 import { useState, useEffect } from 'react'
 import CustomerForm from '../customer_form'
 import { LoadingSpinner } from '@/components/loading_spinner'
+import { CustomerRepository } from '../_data/customer_repository'
 
 export default function CustomerCreatePage() {
   const emptyCustomer = MockCustomerRepository.emptyCustomer()
@@ -24,6 +25,9 @@ export default function CustomerCreatePage() {
         }}
         onSave={(values: ICustomer) => {
           console.log(values)
+          CustomerRepository.createCustomer(values).then((e) => {
+            router.push('/customers/')
+          })
         }}
         onCancel={() => {
           router.push('/customers/')

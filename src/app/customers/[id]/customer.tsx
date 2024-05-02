@@ -10,6 +10,7 @@ import { MockCustomerRepository } from '../_data/mock_customer_repository'
 import { LoadingSpinner } from '@/components/loading_spinner'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
+import { CustomerRepository } from '../_data/customer_repository'
 
 export default function Customer({
   isEdit,
@@ -27,7 +28,8 @@ export default function Customer({
   }, [])
 
   const init = async () => {
-    const customer_ = await MockCustomerRepository.fetchCustomerById(1)
+    const customer_ = await // Mock
+    CustomerRepository.fetchCustomerById('abcdef')
     setCustomer(customer_)
     setLoading(false)
   }

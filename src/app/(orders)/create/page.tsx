@@ -9,6 +9,7 @@ import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_reposito
 import { useState, useEffect } from 'react'
 import OrderForm from '../order_form'
 import { LoadingSpinner } from '@/components/loading_spinner'
+import { MenuItemRepository } from '@/app/menu/_data/menu_item_repository'
 
 export default function OrderCreatePage() {
   const emptyOrder = MockOrderRepository.emptyOrder()
@@ -21,7 +22,8 @@ export default function OrderCreatePage() {
   }, [])
 
   const init = async () => {
-    const menuItems_ = await MockMenuItemRepository.fetchAllMenuItems()
+    const menuItems_ = await // Mock
+    MenuItemRepository.fetchAllMenuItems()
     setMenuItems(menuItems_)
     setLoading(false)
   }

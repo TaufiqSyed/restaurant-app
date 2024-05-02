@@ -10,6 +10,8 @@ import { MockOrderRepository } from '../_data/mock_order_repository'
 import { LoadingSpinner } from '@/components/loading_spinner'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
 import { DataItemDetailEdit } from '@/components/data_item_detail_edit'
+import { MenuItemRepository } from '@/app/menu/_data/menu_item_repository'
+import { OrderRepository } from '../_data/order_repository'
 
 export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
   const [order, setOrder] = useState<IOrder | null>(null)
@@ -23,8 +25,10 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
 
   const init = async () => {
     const [order_, menuItems_] = await Promise.all([
-      MockOrderRepository.fetchOrderById(1),
-      MockMenuItemRepository.fetchAllMenuItems(),
+      // Mock
+      OrderRepository.fetchOrderById('orderid'),
+      // Mock
+      MenuItemRepository.fetchAllMenuItems(),
     ])
     const orderWithMenuSelects: IOrder = {
       ...order_,
