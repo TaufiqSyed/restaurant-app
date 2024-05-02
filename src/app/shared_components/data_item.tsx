@@ -34,6 +34,7 @@ export const DataItem = ({
       p='22px 26px'
       cursor={cursor ?? 'pointer'}
       onClick={onClick}
+      boxShadow='0 0 0 10px var(--chakra-colors-dark-background)'
       {...props}
     >
       <Box>

@@ -179,7 +179,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
           {!isOpen && (
             <Box ml='auto' mr='50px'>
               <NavLink href={root_href + 'create'}>
-                <Button colorScheme='blue'>
+                <Button colorScheme='purple'>
                   Create {hrefToEntityName(root_href)}
                 </Button>
               </NavLink>

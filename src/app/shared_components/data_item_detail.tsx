@@ -44,7 +44,7 @@ export const DataItemDetail = ({
       w='100%'
     >
       <Box>
-        <Button onClick={onBack} mb='30px'>
+        <Button onClick={onBack} mb='30px' colorScheme='purple'>
           {'<< Back to dashboard'}
         </Button>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
@@ -64,6 +64,7 @@ export const DataItemDetail = ({
               aria-label={'Edit Information'}
               onClick={onEdit}
               m='0 8px'
+              colorScheme='purple'
             />
           </Flex>
         </Flex>
