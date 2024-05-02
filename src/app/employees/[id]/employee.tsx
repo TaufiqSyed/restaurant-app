@@ -38,7 +38,7 @@ export default function Employee({
       {isEdit ? (
         <DataItemDetailEdit
           dataHeader='Employee Information'
-          // titleField='employee_id'
+          // titleField='employeeid'
           json={employee!}
           onBack={() => {
             router.push('/employees/')
@@ -47,7 +47,7 @@ export default function Employee({
             console.log(values)
           }}
           onCancel={() => {
-            router.push(`/employees/${employee!.employee_id}`)
+            router.push(`/employees/${employee!.employeeid}`)
           }}
           FormikForm={EmployeeForm}
           omitFields={undefined}
@@ -55,13 +55,13 @@ export default function Employee({
       ) : (
         <DataItemDetail
           dataHeader='Employee Information'
-          // titleField='employee_id'
+          // titleField='employeeid'
           json={employee!}
           onBack={() => {
             router.push('/employees')
           }}
           onEdit={() => {
-            router.push(`/employees/${employee!.employee_id}/edit`)
+            router.push(`/employees/${employee!.employeeid}/edit`)
           }}
           onDelete={() => {}}
           FormikForm={EmployeeForm}

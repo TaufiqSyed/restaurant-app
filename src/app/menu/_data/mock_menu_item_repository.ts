@@ -1,8 +1,8 @@
 import { IMenuItem } from '@/constants/interfaces'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 
-// item_id: number
-// item_name: string
+// itemid: number
+// itemname: string
 // description?: string
 // price: number
 // category?: string
@@ -10,8 +10,8 @@ import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 export class MockMenuItemRepository {
   static emptyMenuItem = (): IMenuItem => {
     return {
-      item_id: '',
-      item_name: '',
+      itemid: '',
+      itemname: '',
       description: '',
       price: '',
       category: '',
@@ -19,8 +19,8 @@ export class MockMenuItemRepository {
   }
   static generateMockMenuItem = (): IMenuItem => {
     return {
-      item_id: randomName(),
-      item_name: randomName(),
+      itemid: randomName(),
+      itemname: randomName(),
       description: randomName(),
       price: randomInteger(),
       category: randomName(),

@@ -7,27 +7,27 @@ import {
   randomName,
 } from '@/shared_utils/mock_random_data'
 
-// order_id: number
-// employee_id: number
-// customer_id: string
-// table_number: number
-// order_date: Date
+// orderid: number
+// employeeid: number
+// customerid: string
+// tablenumber: number
+// orderdate: Date
 // total_price: number
 // menu_items?: IMenuItem[]
 // customer?: ICustomer
-// menu_item_ids?: number[]
+// menu_itemids?: number[]
 
 export class MockOrderRepository {
   static emptyOrder = (): IPartialOrder => {
     return {
-      order_id: '',
-      employee_id: '',
-      customer_id: '',
-      table_number: '',
-      order_date: '',
+      orderid: '',
+      employeeid: '',
+      customerid: '',
+      tablenumber: '',
+      orderdate: '',
       total_price: '',
       menu_items: [],
-      menu_item_ids: [],
+      menu_itemids: [],
       customer: undefined,
     }
   }
@@ -37,16 +37,16 @@ export class MockOrderRepository {
       MockMenuItemRepository.generateMockMenuItem(),
       MockMenuItemRepository.generateMockMenuItem(),
     ]
-    const menu_item_ids = menu_items.map((e) => e.item_id)
+    const menu_itemids = menu_items.map((e) => e.itemid)
     return {
-      order_id: randomName(),
-      employee_id: randomName(),
-      customer_id: randomName(),
-      table_number: randomInteger(),
-      order_date: randomDate(),
+      orderid: randomName(),
+      employeeid: randomName(),
+      customerid: randomName(),
+      tablenumber: randomInteger(),
+      orderdate: randomDate(),
       total_price: randomInteger(),
       menu_items,
-      menu_item_ids,
+      menu_itemids,
       customer: MockCustomerRepository.generateMockCustomer(),
     }
   }

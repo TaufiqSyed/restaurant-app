@@ -1,35 +1,35 @@
 import { IEmployee } from '@/constants/interfaces'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 
-// employee_id: number
+// employeeid: number
 // username: string
-// is_admin: boolean
+// isadmin: boolean
 // name: string
 // position: string
-// phone: string
+// contact_information: string
 // salary: number
 // password?: string
 
 export class MockEmployeeRepository {
   static emptyEmployee = (): IEmployee => {
     return {
-      employee_id: randomName(),
+      employeeid: randomName(),
       username: randomName(),
-      is_admin: false,
+      isadmin: false,
       name: randomName(),
       position: randomName(),
-      phone: randomInteger().toString(),
+      contact_information: randomInteger().toString(),
       salary: randomInteger(),
     }
   }
   static generateMockEmployee = (): IEmployee => {
     return {
-      employee_id: randomName(),
+      employeeid: randomName(),
       username: randomName(),
-      is_admin: false,
+      isadmin: false,
       name: randomName(),
       position: randomName(),
-      phone: randomInteger().toString(),
+      contact_information: randomInteger().toString(),
       salary: randomInteger(),
     }
   }

@@ -14,7 +14,7 @@ export default function Login() {
           onSubmit={(values: any) => {
             localStorage.setItem(
               'user',
-              JSON.stringify({ is_admin: true, user_id: 1 })
+              JSON.stringify({ isadmin: true, user_id: 1 })
             )
             router.push('/')
           }}

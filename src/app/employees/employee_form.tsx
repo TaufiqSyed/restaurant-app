@@ -13,12 +13,12 @@ import { GenericField } from '@/components/generic_field'
 
 import '../globals.css'
 
-// employee_id: string
+// employeeid: string
 // username: string
-// is_admin: boolean
+// isadmin: boolean
 // name: string
 // position: string
-// phone: string
+// contact_information: string
 // salary: number
 // password?: string
 
@@ -44,15 +44,15 @@ export default function EmployeeForm({
           <VStack spacing={4} align='flex-start'>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.employee_id && touched.employee_id}
+              isInvalid={!!errors.employeeid && touched.employeeid}
             >
               <FormLabel>Employee ID</FormLabel>
               <GenericField
-                key='employee_id'
-                id='employee_id'
+                key='employeeid'
+                id='employeeid'
                 validate={Validator.nonEmpty}
               />
-              <FormErrorMessage>{errors.employee_id}</FormErrorMessage>
+              <FormErrorMessage>{errors.employeeid}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
@@ -92,15 +92,17 @@ export default function EmployeeForm({
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.phone && touched.phone}
+              isInvalid={
+                !!errors.contact_information && touched.contact_information
+              }
             >
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>contact_information</FormLabel>
               <GenericField
-                key='phone'
-                id='phone'
+                key='contact_information'
+                id='contact_information'
                 validate={Validator.posInteger}
               />
-              <FormErrorMessage>{errors.phone}</FormErrorMessage>
+              <FormErrorMessage>{errors.contact_information}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}

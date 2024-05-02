@@ -13,8 +13,8 @@ import { GenericField } from '@/components/generic_field'
 
 import '../globals.css'
 
-// item_id: string
-// item_name: string
+// itemid: string
+// itemname: string
 // description?: string
 // price: number | ''
 // category?: string
@@ -41,27 +41,27 @@ export default function MenuItemForm({
           <VStack spacing={4} align='flex-start'>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.item_id && touched.item_id}
+              isInvalid={!!errors.itemid && touched.itemid}
             >
               <FormLabel>Item ID</FormLabel>
               <GenericField
-                key='item_id'
-                id='item_id'
+                key='itemid'
+                id='itemid'
                 validate={Validator.nonEmpty}
               />
-              <FormErrorMessage>{errors.item_id}</FormErrorMessage>
+              <FormErrorMessage>{errors.itemid}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.item_name && touched.item_name}
+              isInvalid={!!errors.itemname && touched.itemname}
             >
               <FormLabel>Item Name</FormLabel>
               <GenericField
-                key='item_name'
-                id='item_name'
+                key='itemname'
+                id='itemname'
                 validate={Validator.nonEmpty}
               />
-              <FormErrorMessage>{errors.item_name}</FormErrorMessage>
+              <FormErrorMessage>{errors.itemname}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}

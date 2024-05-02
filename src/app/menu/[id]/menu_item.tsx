@@ -37,7 +37,7 @@ export default function MenuItem({
       {isEdit ? (
         <DataItemDetailEdit
           dataHeader='MenuItem Information'
-          // titleField='menuitem_id'
+          // titleField='menuitemid'
           json={menuitem!}
           onBack={() => {
             router.push('/menu/')
@@ -46,7 +46,7 @@ export default function MenuItem({
             console.log(values)
           }}
           onCancel={() => {
-            router.push(`/menu/${menuitem!.item_id}`)
+            router.push(`/menu/${menuitem!.itemid}`)
           }}
           FormikForm={MenuItemForm}
           omitFields={undefined}
@@ -54,13 +54,13 @@ export default function MenuItem({
       ) : (
         <DataItemDetail
           dataHeader='Menu Information'
-          // titleField='menuitem_id'
+          // titleField='menuitemid'
           json={menuitem!}
           onBack={() => {
             router.push('/menu')
           }}
           onEdit={() => {
-            router.push(`/menu/${menuitem!.item_id}/edit`)
+            router.push(`/menu/${menuitem!.itemid}/edit`)
           }}
           onDelete={() => {}}
           FormikForm={MenuItemForm}

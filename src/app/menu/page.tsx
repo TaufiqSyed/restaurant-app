@@ -27,11 +27,11 @@ export default function MenuItemsPage() {
     <Container root_href='/menu/'>
       {menuitems.map((menuitem) => (
         <DataItem
-          key={menuitem.item_id}
-          titleField='item_id'
+          key={menuitem.itemid}
+          titleField='itemid'
           json={menuitem}
           onClick={(): void => {
-            router.push(`/menu/${menuitem.item_id}`)
+            router.push(`/menu/${menuitem.itemid}`)
           }}
         />
       ))}

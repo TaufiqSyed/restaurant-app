@@ -146,7 +146,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
                 minW='100px'
               >
                 {Links.map((link) =>
-                  !link.adminOnly || (user?.is_admin ?? false) ? (
+                  !link.adminOnly || (user?.isadmin ?? false) ? (
                     <NavLink key={link.name} href={link.href}>
                       <Text
                         textDecoration={

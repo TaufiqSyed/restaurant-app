@@ -32,13 +32,13 @@ export default function OrdersPage() {
     <Container root_href='/'>
       {orders.map((order) => (
         <DataItem
-          key={order.order_id}
-          titleField='order_id'
+          key={order.orderid}
+          titleField='orderid'
           json={order}
           onClick={(): void => {
-            router.push(`/${order.order_id}`)
+            router.push(`/${order.orderid}`)
           }}
-          omitFields={['menu_items', 'customer', 'menu_item_ids']}
+          omitFields={['menu_items', 'customer', 'menu_itemids']}
         />
       ))}
     </Container>

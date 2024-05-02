@@ -1,57 +1,57 @@
 export interface IUser {
-  is_admin: boolean
+  isadmin: boolean
   user_id: string
 }
 
 export interface IEmployee {
-  employee_id: string
+  employeeid: string
   username: string
-  is_admin: boolean
+  isadmin: boolean
   name: string
   position: string
-  phone: string
+  contact_information: string
   salary: number
   password?: string
 }
 
 export interface ICustomer {
-  customer_id: string
+  customerid: string
   name: string
-  phone: string
+  contact_information: string
   email: string
 }
 
 export interface IMenuItem {
-  item_id: string
-  item_name: string
+  itemid: string
+  itemname: string
   description?: string
   price: number | ''
   category?: string
 }
 
 export interface IOrder {
-  order_id: string
-  employee_id: string
-  customer_id: string
-  table_number: number | ''
-  order_date: Date | ''
+  orderid: string
+  employeeid: string
+  customerid: string
+  tablenumber: number | ''
+  orderdate: Date | ''
   total_price: number | ''
   menu_items?: IMenuItem[]
   customer?: ICustomer
-  menu_item_ids?: string[]
+  menu_itemids?: string[]
   menu_selects?: IMultiSelect[]
 }
 
 export interface IPartialOrder {
-  order_id: string
-  employee_id: string
-  customer_id: string
-  table_number: number | ''
-  order_date: Date | ''
+  orderid: string
+  employeeid: string
+  customerid: string
+  tablenumber: number | ''
+  orderdate: Date | ''
   total_price: number | ''
   menu_items: IMenuItem[]
   customer?: ICustomer
-  menu_item_ids?: string[]
+  menu_itemids?: string[]
   menu_selects?: IMultiSelect[]
 }
 

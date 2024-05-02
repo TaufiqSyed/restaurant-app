@@ -38,7 +38,7 @@ export default function Customer({
       {isEdit ? (
         <DataItemDetailEdit
           dataHeader='Customer Information'
-          // titleField='customer_id'
+          // titleField='customerid'
           json={customer!}
           onBack={() => {
             router.push('/')
@@ -47,7 +47,7 @@ export default function Customer({
             console.log(values)
           }}
           onCancel={() => {
-            router.push(`/customers/${customer!.customer_id}`)
+            router.push(`/customers/${customer!.customerid}`)
           }}
           FormikForm={CustomerForm}
           omitFields={undefined}
@@ -55,13 +55,13 @@ export default function Customer({
       ) : (
         <DataItemDetail
           dataHeader='Customer Information'
-          // titleField='customer_id'
+          // titleField='customerid'
           json={customer!}
           onBack={() => {
             router.push('/customers')
           }}
           onEdit={() => {
-            router.push(`/customers/${customer!.customer_id}/edit`)
+            router.push(`/customers/${customer!.customerid}/edit`)
           }}
           onDelete={() => {}}
           FormikForm={CustomerForm}

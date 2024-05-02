@@ -29,8 +29,8 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
     const orderWithMenuSelects: IOrder = {
       ...order_,
       menu_selects: (order_?.menu_items ?? []).map((e) => ({
-        label: e.item_name,
-        value: e.item_id,
+        label: e.itemname,
+        value: e.itemid,
       })),
     }
     setOrder(orderWithMenuSelects)
@@ -52,7 +52,7 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
             console.log(values)
           }}
           onCancel={() => {
-            router.push(`/${order!.order_id}`)
+            router.push(`/${order!.orderid}`)
           }}
           FormikForm={OrderForm}
           omitFields={undefined}
@@ -61,13 +61,13 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
       ) : (
         <DataItemDetail
           dataHeader='Order Information'
-          // titleField='order_id'
+          // titleField='orderid'
           json={order!}
           onBack={() => {
             router.push('/')
           }}
           onEdit={() => {
-            router.push(`/${order!.order_id}/edit`)
+            router.push(`/${order!.orderid}/edit`)
           }}
           onDelete={() => {}}
           menuItems={menuItems!}

@@ -3,27 +3,27 @@
 // import { IOrder, IPartialOrder } from '@/constants/interfaces'
 // import { randomDate, randomInteger } from '@/shared_utils/mock_random_data'
 
-// // order_id: number
-// // employee_id: number
-// // customer_id: string
-// // table_number: number
-// // order_date: Date
+// // orderid: number
+// // employeeid: number
+// // customerid: string
+// // tablenumber: number
+// // orderdate: Date
 // // total_price: number
 // // menu_items?: IMenuItem[]
 // // customer?: ICustomer
-// // menu_item_ids?: number[]
+// // menu_itemids?: number[]
 
 // export class OrderRepository {
 //   static emptyOrder = (): IPartialOrder => {
 //     return {
-//       order_id: '',
-//       employee_id: '',
-//       customer_id: '',
-//       table_number: '',
-//       order_date: '',
+//       orderid: '',
+//       employeeid: '',
+//       customerid: '',
+//       tablenumber: '',
+//       orderdate: '',
 //       total_price: '',
 //       menu_items: [],
-//       menu_item_ids: [],
+//       menu_itemids: [],
 //       customer: undefined,
 //     }
 //   }

@@ -27,11 +27,11 @@ export default function CustomersPage() {
     <Container root_href='/customers/'>
       {customers.map((customer) => (
         <DataItem
-          key={customer.customer_id}
-          titleField='customer_id'
+          key={customer.customerid}
+          titleField='customerid'
           json={customer}
           onClick={(): void => {
-            router.push(`customers/${customer.customer_id}`)
+            router.push(`customers/${customer.customerid}`)
           }}
         />
       ))}

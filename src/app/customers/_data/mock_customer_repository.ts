@@ -1,25 +1,25 @@
 import { ICustomer } from '@/constants/interfaces'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 
-// customer_id: number
+// customerid: number
 // name: string
-// phone?: string
+// contact_information?: string
 // email?: string
 
 export class MockCustomerRepository {
   static emptyCustomer = (): ICustomer => {
     return {
-      customer_id: '',
+      customerid: '',
       name: '',
-      phone: '',
+      contact_information: '',
       email: '',
     }
   }
   static generateMockCustomer = (): ICustomer => {
     return {
-      customer_id: randomName(),
+      customerid: randomName(),
       name: randomName(),
-      phone: randomInteger().toString(),
+      contact_information: randomInteger().toString(),
       email: randomName(),
     }
   }

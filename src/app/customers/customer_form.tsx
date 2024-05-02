@@ -13,9 +13,9 @@ import { GenericField } from '@/components/generic_field'
 
 import '../globals.css'
 
-// customer_id: string
+// customerid: string
 // name: string
-// phone: string
+// contact_information: string
 // email: string
 
 export default function CustomerForm({
@@ -40,15 +40,15 @@ export default function CustomerForm({
           <VStack spacing={4} align='flex-start'>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.customer_id && touched.customer_id}
+              isInvalid={!!errors.customerid && touched.customerid}
             >
               <FormLabel>Customer ID</FormLabel>
               <GenericField
-                key='customer_id'
-                id='customer_id'
+                key='customerid'
+                id='customerid'
                 validate={Validator.posInteger}
               />
-              <FormErrorMessage>{errors.customer_id}</FormErrorMessage>
+              <FormErrorMessage>{errors.customerid}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
@@ -64,15 +64,17 @@ export default function CustomerForm({
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.phone && touched.phone}
+              isInvalid={
+                !!errors.contact_information && touched.contact_information
+              }
             >
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>contact_information</FormLabel>
               <GenericField
-                key='phone'
-                id='phone'
+                key='contact_information'
+                id='contact_information'
                 validate={Validator.posInteger}
               />
-              <FormErrorMessage>{errors.phone}</FormErrorMessage>
+              <FormErrorMessage>{errors.contact_information}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
