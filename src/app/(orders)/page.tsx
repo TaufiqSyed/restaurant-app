@@ -33,7 +33,7 @@ export default function OrdersPage() {
           onClick={(): void => {
             router.push(`/${order.order_id}`)
           }}
-          omitFields={['menu_items', 'customer']}
+          omitFields={['menu_items', 'customer', 'menu_item_ids']}
         />
       ))}
     </Container>
