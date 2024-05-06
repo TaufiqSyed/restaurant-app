@@ -1,9 +1,10 @@
 import { IApiResponse, IEmployee } from '@/constants/interfaces'
 import { ApiRoutes } from '@/shared_utils/api_routes'
+import { ConvertKeysToLowerCase } from '@/shared_utils/convert_keys_to_lowercase'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 import axios, { AxiosResponse } from 'axios'
 
-// employeeid: number
+// userid: number
 // username: string
 // isadmin: boolean
 // name: string
@@ -15,17 +16,29 @@ import axios, { AxiosResponse } from 'axios'
 export class EmployeeRepository {
   static emptyEmployee = (): IEmployee => {
     return {
-      employeeid: randomName(),
-      username: randomName(),
+      userid: '',
+      username: '',
       isadmin: false,
-      name: randomName(),
-      position: randomName(),
-      contact_information: randomInteger().toString(),
-      salary: randomInteger(),
+      name: '',
+      position: '',
+      contact_information: '',
+      salary: 0,
     }
   }
   static fetchAllEmployees = async (): Promise<IEmployee[]> => {
-    const employees = (await axios.get(ApiRoutes.employees)).data
+    let employees_: any[] = (await axios.get(ApiRoutes.employees)).data
+    console.log('a ' + JSON.stringify(employees_))
+    employees_ = employees_.map((e) => ConvertKeysToLowerCase(e))
+    console.log('b ' + JSON.stringify(employees_))
+    employees_ = employees_.map((e) => ({
+      mgr: e['USER_EMPLOYEE_USERID'],
+      ...e,
+    }))
+    console.log('c ' + JSON.stringify(employees_))
+    const employees = employees_.map(
+      ({ USER_EMPLOYEE_USERID, ...rest }) => rest
+    )
+    console.log('d ' + JSON.stringify(employees))
     return employees
   }
   static fetchEmployeeById = async (id: string): Promise<IEmployee> => {

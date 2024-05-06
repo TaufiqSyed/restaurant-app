@@ -8,7 +8,7 @@ import {
 } from '@/shared_utils/mock_random_data'
 
 // orderid: number
-// employeeid: number
+// userid: number
 // customerid: string
 // tablenumber: number
 // orderdate: Date
@@ -21,7 +21,7 @@ export class MockOrderRepository {
   static emptyOrder = (): IPartialOrder => {
     return {
       orderid: '',
-      employeeid: '',
+      userid: '',
       customerid: '',
       tablenumber: '',
       orderdate: '',
@@ -40,7 +40,7 @@ export class MockOrderRepository {
     const menu_itemids = menu_items.map((e) => e.itemid)
     return {
       orderid: randomName(),
-      employeeid: randomName(),
+      userid: randomName(),
       customerid: randomName(),
       tablenumber: randomInteger(),
       orderdate: randomDate(),

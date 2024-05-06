@@ -4,6 +4,6 @@ export const fieldString = (x: any) => {
   if (x instanceof Date) {
     return prettyDate(x)
   } else {
-    return x.toString()
+    return (x ?? 'N/A').toString()
   }
 }

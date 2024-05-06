@@ -4,7 +4,7 @@ export interface IUser {
 }
 
 export interface IEmployee {
-  employeeid: string
+  userid: string
   username: string
   isadmin: boolean
   name: string
@@ -19,6 +19,7 @@ export interface ICustomer {
   name: string
   contact_information: string
   email: string
+  mgr: string
 }
 
 export interface IMenuItem {
@@ -31,7 +32,7 @@ export interface IMenuItem {
 
 export interface IOrder {
   orderid: string
-  employeeid: string
+  userid: string
   customerid: string
   tablenumber: number | ''
   orderdate: Date | ''
@@ -44,7 +45,7 @@ export interface IOrder {
 
 export interface IPartialOrder {
   orderid: string
-  employeeid: string
+  userid: string
   customerid: string
   tablenumber: number | ''
   orderdate: Date | ''

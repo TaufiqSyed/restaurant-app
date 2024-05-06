@@ -10,7 +10,7 @@ import {
 import axios, { AxiosResponse } from 'axios'
 
 // orderid: number
-// employeeid: number
+// userid: number
 // customerid: string
 // tablenumber: number
 // orderdate: Date
@@ -23,7 +23,7 @@ export class OrderRepository {
   static emptyOrder = (): IPartialOrder => {
     return {
       orderid: '',
-      employeeid: '',
+      userid: '',
       customerid: '',
       tablenumber: '',
       orderdate: '',

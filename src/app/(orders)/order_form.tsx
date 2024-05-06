@@ -33,7 +33,7 @@ import { MultiValue, Select } from 'chakra-react-select'
 import { randomName } from '@/shared_utils/mock_random_data'
 
 // orderid: number
-// employeeid: number
+// userid: number
 // customerid: number
 // tablenumber: number
 // orderdate: Date
@@ -91,17 +91,17 @@ export default function OrderForm({
               <FormErrorMessage>{errors.orderid}</FormErrorMessage>
             </FormControl>
             <FormControl
-              isInvalid={!!errors.employeeid && touched.employeeid}
+              isInvalid={!!errors.userid && touched.userid}
               isReadOnly={viewOnly}
             >
               <FormLabel>Employee ID</FormLabel>
               <GenericField
-                key='employeeid'
-                id='employeeid'
+                key='userid'
+                id='userid'
                 validate={Validator.nonEmpty}
                 type='text'
               />
-              <FormErrorMessage>{errors.employeeid}</FormErrorMessage>
+              <FormErrorMessage>{errors.userid}</FormErrorMessage>
             </FormControl>
 
             <FormControl

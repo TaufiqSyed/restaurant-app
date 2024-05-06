@@ -13,7 +13,7 @@ import { GenericField } from '@/components/generic_field'
 
 import '../globals.css'
 
-// employeeid: string
+// userid: string
 // username: string
 // isadmin: boolean
 // name: string
@@ -44,15 +44,15 @@ export default function EmployeeForm({
           <VStack spacing={4} align='flex-start'>
             <FormControl
               isReadOnly={viewOnly}
-              isInvalid={!!errors.employeeid && touched.employeeid}
+              isInvalid={!!errors.userid && touched.userid}
             >
               <FormLabel>Employee ID</FormLabel>
               <GenericField
-                key='employeeid'
-                id='employeeid'
+                key='userid'
+                id='userid'
                 validate={Validator.nonEmpty}
               />
-              <FormErrorMessage>{errors.employeeid}</FormErrorMessage>
+              <FormErrorMessage>{errors.userid}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
@@ -65,6 +65,20 @@ export default function EmployeeForm({
                 validate={Validator.nonEmpty}
               />
               <FormErrorMessage>{errors.username}</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              isReadOnly={viewOnly}
+              isInvalid={!!errors.isadmin && touched.isadmin}
+            >
+              <FormLabel>Admin</FormLabel>
+              <GenericField
+                key='isadmin'
+                id='isadmin'
+                validate={(x: any) => {}}
+                // validate={Validator.nonEmpty}
+                type='checkbox'
+              />
+              <FormErrorMessage>{errors.isadmin}</FormErrorMessage>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}

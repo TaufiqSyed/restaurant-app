@@ -29,11 +29,11 @@ export default function EmployeesPage() {
     <Container root_href='/employees/'>
       {employees.map((employee) => (
         <DataItem
-          key={employee.employeeid}
-          titleField='employeeid'
+          key={employee.userid}
+          titleField='userid'
           json={employee}
           onClick={(): void => {
-            router.push(`/employees/${employee.employeeid}`)
+            router.push(`/employees/${employee.userid}`)
           }}
         />
       ))}
