@@ -20,7 +20,7 @@ export const LoginBox = ({ onSubmit }: { onSubmit: (values: any) => void }) => {
       </Box>
       <Box fontSize='22px' mt='12px'>
         <LoginForm
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ username: '', password: '' }}
           viewOnly={false}
           onSubmit={onSubmit}
         />

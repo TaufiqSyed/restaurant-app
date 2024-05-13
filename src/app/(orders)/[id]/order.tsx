@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { DataItemDetail } from '@/components/data_item_detail'
 import { Container } from '@/components/container'
 import { useEffect, useState } from 'react'
-import { IMenuItem, IOrder, IPartialOrder } from '@/constants/interfaces'
+import { IMenuItem, IOrder, IOrder } from '@/constants/interfaces'
 import OrderForm from '../order_form'
 import { MockOrderRepository } from '../_data/mock_order_repository'
 import { LoadingSpinner } from '@/components/loading_spinner'
@@ -25,10 +25,8 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
 
   const init = async () => {
     const [order_, menuItems_] = await Promise.all([
-      // Mock
-      OrderRepository.fetchOrderById('orderid'),
-      // Mock
-      MenuItemRepository.fetchAllMenuItems(),
+      MockOrderRepository.fetchOrderById('orderid'),
+      MockMenuItemRepository.fetchAllMenuItems(),
     ])
     const orderWithMenuSelects: IOrder = {
       ...order_,
@@ -52,7 +50,7 @@ export default function Order({ isEdit, id }: { isEdit: boolean; id: string }) {
           onBack={() => {
             router.push('/')
           }}
-          onSave={(values: IPartialOrder) => {
+          onSave={(values: IOrder) => {
             console.log(values)
           }}
           onCancel={() => {

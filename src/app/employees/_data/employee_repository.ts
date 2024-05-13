@@ -23,32 +23,40 @@ export class EmployeeRepository {
       position: '',
       contact_information: '',
       salary: 0,
+      mgr: '',
     }
   }
+  static cleanServerData = (data: any): IEmployee => {
+    const { user_employee_userid, ...rest } = ConvertKeysToLowerCase(data)
+    return {
+      mgr: user_employee_userid,
+      isadmin: rest.isadmin == 'T',
+      ...rest,
+    }
+  }
+  static toServerData = (emp: IEmployee): any => {
+    return { ...emp, isadmin: emp.isadmin ? 'T' : 'F' }
+  }
   static fetchAllEmployees = async (): Promise<IEmployee[]> => {
-    let employees_: any[] = (await axios.get(ApiRoutes.employees)).data
-    console.log('a ' + JSON.stringify(employees_))
-    employees_ = employees_.map((e) => ConvertKeysToLowerCase(e))
-    console.log('b ' + JSON.stringify(employees_))
-    employees_ = employees_.map((e) => ({
-      mgr: e['USER_EMPLOYEE_USERID'],
-      ...e,
-    }))
-    console.log('c ' + JSON.stringify(employees_))
-    const employees = employees_.map(
-      ({ USER_EMPLOYEE_USERID, ...rest }) => rest
-    )
-    console.log('d ' + JSON.stringify(employees))
+    const employees_: any[] = (await axios.get(ApiRoutes.employees)).data
+    const employees = employees_.map(EmployeeRepository.cleanServerData)
+    console.log(JSON.stringify(employees))
     return employees
   }
   static fetchEmployeeById = async (id: string): Promise<IEmployee> => {
-    const employee = (await axios.get(ApiRoutes.employeeById(id))).data
+    const employee_: any = (await axios.get(ApiRoutes.employeeById(id))).data[0]
+    console.log('employee_ ' + JSON.stringify(employee_))
+    const employee = EmployeeRepository.cleanServerData(employee_)
+    console.log('employee ' + JSON.stringify(employee))
     return employee
   }
   static createEmployee = async (
     employee: IEmployee
   ): Promise<IApiResponse> => {
-    const resp: AxiosResponse = await axios.post(ApiRoutes.employees, employee)
+    console.log('employee = ' + JSON.stringify(employee))
+    const employee_ = EmployeeRepository.toServerData(employee)
+    console.log('employee_ = ' + JSON.stringify(employee_))
+    const resp: AxiosResponse = await axios.post(ApiRoutes.employees, employee_)
     if (resp.status == 200 || resp.status == 201) {
       return {
         success: true,
@@ -63,7 +71,8 @@ export class EmployeeRepository {
   static updateEmployee = async (
     employee: IEmployee
   ): Promise<IApiResponse> => {
-    const resp: AxiosResponse = await axios.put(ApiRoutes.employees, employee)
+    const employee_ = EmployeeRepository.toServerData(employee)
+    const resp: AxiosResponse = await axios.put(ApiRoutes.employees, employee_)
     if (resp.status == 200 || resp.status == 201) {
       return {
         success: true,
@@ -74,5 +83,24 @@ export class EmployeeRepository {
         message: 'Invalid Data',
       }
     }
+  }
+  static deleteEmployee = async (id: string): Promise<IApiResponse> => {
+    const resp: AxiosResponse = await axios.delete(ApiRoutes.employeeById(id))
+    if (resp.status == 200 || resp.status == 201) {
+      return {
+        success: true,
+      }
+    } else {
+      return {
+        success: false,
+        message: 'Invalid Data',
+      }
+    }
+  }
+  static employeeWithMostOrders = async (): Promise<any> => {
+    const employee_ = (await axios.get(ApiRoutes.employeeWithMostOrders))
+      .data[0]
+    const employee = ConvertKeysToLowerCase(employee_)
+    return employee
   }
 }

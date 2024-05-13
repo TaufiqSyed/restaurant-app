@@ -1,5 +1,6 @@
 import { IApiResponse, ICustomer } from '@/constants/interfaces'
 import { ApiRoutes } from '@/shared_utils/api_routes'
+import { ConvertKeysToLowerCase } from '@/shared_utils/convert_keys_to_lowercase'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 import axios, { AxiosResponse } from 'axios'
 
@@ -17,12 +18,17 @@ export class CustomerRepository {
       email: '',
     }
   }
+  static cleanServerData = (data: any): ICustomer => {
+    return ConvertKeysToLowerCase(data)
+  }
   static fetchAllCustomers = async (): Promise<ICustomer[]> => {
-    const customers = (await axios.get(ApiRoutes.customers)).data
+    const customers_ = (await axios.get(ApiRoutes.customers)).data
+    const customers = customers_.map(CustomerRepository.cleanServerData)
     return customers
   }
   static fetchCustomerById = async (id: string): Promise<ICustomer> => {
-    const customer = (await axios.get(ApiRoutes.customerById(id))).data
+    const customer_ = (await axios.get(ApiRoutes.customerById(id))).data
+    const customer = CustomerRepository.cleanServerData(customer_)
     return customer
   }
   static createCustomer = async (
@@ -55,5 +61,20 @@ export class CustomerRepository {
         message: 'Invalid Data',
       }
     }
+  }
+  static mostFrequentCustomers = async (): Promise<any[]> => {
+    const customers_ = (await axios.get(ApiRoutes.mostFrequentCustomers)).data
+
+    const customers = customers_.map((e: any) => {
+      const { customer_customerid, occurrence_count, ...rest } =
+        ConvertKeysToLowerCase(e)
+      return {
+        customerid: customer_customerid,
+        '# of visits': occurrence_count,
+        ...rest,
+      }
+    })
+    // const customers = customers_.map(CustomerRepository.cleanServerData)
+    return customers
   }
 }

@@ -20,6 +20,7 @@ export class MockEmployeeRepository {
       position: randomName(),
       contact_information: randomInteger().toString(),
       salary: randomInteger(),
+      mgr: '',
     }
   }
   static generateMockEmployee = (): IEmployee => {
@@ -31,6 +32,7 @@ export class MockEmployeeRepository {
       position: randomName(),
       contact_information: randomInteger().toString(),
       salary: randomInteger(),
+      mgr: randomName(),
     }
   }
   static fetchAllEmployees = async (): Promise<IEmployee[]> => {

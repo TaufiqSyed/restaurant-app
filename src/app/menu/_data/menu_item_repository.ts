@@ -1,5 +1,6 @@
 import { IApiResponse, IMenuItem } from '@/constants/interfaces'
 import { ApiRoutes } from '@/shared_utils/api_routes'
+import { ConvertKeysToLowerCase } from '@/shared_utils/convert_keys_to_lowercase'
 import { randomInteger, randomName } from '@/shared_utils/mock_random_data'
 import axios, { AxiosResponse } from 'axios'
 
@@ -19,13 +20,20 @@ export class MenuItemRepository {
       category: '',
     }
   }
+  static cleanServerData = (data: any): IMenuItem => {
+    return ConvertKeysToLowerCase(data)
+  }
 
   static fetchAllMenuItems = async (): Promise<IMenuItem[]> => {
-    const menuitems = (await axios.get(ApiRoutes.menuItems)).data
+    const menuitems_ = (await axios.get(ApiRoutes.menuItems)).data
+    const menuitems = menuitems_.map(MenuItemRepository.cleanServerData)
     return menuitems
   }
   static fetchMenuItemById = async (id: string): Promise<IMenuItem> => {
-    const menuitem = (await axios.get(ApiRoutes.menuItemById(id))).data
+    const menuitem_ = (await axios.get(ApiRoutes.menuItemById(id))).data[0]
+    console.log('MENU ITEM')
+    console.log(JSON.stringify(menuitem_))
+    const menuitem = MenuItemRepository.cleanServerData(menuitem_)
     return menuitem
   }
   static createMenuItem = async (
@@ -57,5 +65,10 @@ export class MenuItemRepository {
         message: 'Invalid Data',
       }
     }
+  }
+  static mostBoughtItems = async (): Promise<IMenuItem[]> => {
+    const menuitems_ = (await axios.get(ApiRoutes.mostBoughtItems)).data
+    const menuitems = menuitems_.map(ConvertKeysToLowerCase)
+    return menuitems
   }
 }

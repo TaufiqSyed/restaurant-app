@@ -1,14 +1,15 @@
 import { NavigationBar } from '@/components/navigation_bar'
-import { Grid } from '@chakra-ui/react'
+import { BoxProps, Grid } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 export const Container = ({
   root_href,
   children,
+  ...props
 }: {
   root_href: string
   children: ReactNode
-}) => {
+} & BoxProps) => {
   return (
     <Grid
       position='absolute'
@@ -19,6 +20,7 @@ export const Container = ({
       p='150px 40px 50px 40px'
       // bg='background'
       minH='100vh'
+      {...props}
     >
       <NavigationBar root_href={root_href} />
       {children}

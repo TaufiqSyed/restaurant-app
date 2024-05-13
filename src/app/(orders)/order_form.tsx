@@ -15,12 +15,7 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import { isNumeric } from '@/shared_utils/is_numeric'
-import {
-  IMenuItem,
-  IMultiSelect,
-  IOrder,
-  IPartialOrder,
-} from '@/constants/interfaces'
+import { IMenuItem, IMultiSelect, IOrder } from '@/constants/interfaces'
 import { Validator } from '@/shared_utils/validator'
 import { GenericField } from '@/components/generic_field'
 import { DatePickerField } from '../../components/date_picker_field'
@@ -33,11 +28,11 @@ import { MultiValue, Select } from 'chakra-react-select'
 import { randomName } from '@/shared_utils/mock_random_data'
 
 // orderid: number
-// userid: number
+// employeeid: number
 // customerid: number
 // tablenumber: number
 // orderdate: Date
-// total_price: number
+// totalprice: number
 // menu_items?: IMenuItem[]
 // customer?: ICustomer
 // menu_itemids?: number[]
@@ -48,7 +43,7 @@ export default function OrderForm({
   onSubmit,
   menuItems,
 }: {
-  initialValues: IPartialOrder
+  initialValues: IOrder
   viewOnly: boolean
   onSubmit?: (values: IOrder) => void
   menuItems?: IMenuItem[]
@@ -72,7 +67,7 @@ export default function OrderForm({
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: IPartialOrder) => onSubmit(values as IOrder)}
+      onSubmit={(values: IOrder) => onSubmit(values as IOrder)}
     >
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
@@ -91,17 +86,17 @@ export default function OrderForm({
               <FormErrorMessage>{errors.orderid}</FormErrorMessage>
             </FormControl>
             <FormControl
-              isInvalid={!!errors.userid && touched.userid}
+              isInvalid={!!errors.employeeid && touched.employeeid}
               isReadOnly={viewOnly}
             >
               <FormLabel>Employee ID</FormLabel>
               <GenericField
-                key='userid'
-                id='userid'
+                key='employeeid'
+                id='employeeid'
                 validate={Validator.nonEmpty}
                 type='text'
               />
-              <FormErrorMessage>{errors.userid}</FormErrorMessage>
+              <FormErrorMessage>{errors.employeeid}</FormErrorMessage>
             </FormControl>
 
             <FormControl
@@ -188,7 +183,7 @@ export default function OrderForm({
                 as={Input}
                 value={
                   viewOnly
-                    ? values.total_price
+                    ? values.totalprice
                     : (values.menu_selects ?? []).reduce(
                         (a, b) => a + b.price!,
                         0

@@ -22,7 +22,6 @@ export default function OrdersPage() {
       router.push('/login')
       return
     }
-    // Mock
     OrderRepository.fetchAllOrders().then((orders) => {
       setOrders(orders)
       setLoading(false)

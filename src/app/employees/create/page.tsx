@@ -9,9 +9,12 @@ import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_reposito
 import { useState, useEffect } from 'react'
 import EmployeeForm from '../employee_form'
 import { LoadingSpinner } from '@/components/loading_spinner'
+import { EmployeeRepository } from '../_data/employee_repository'
 
 export default function EmployeeCreatePage() {
-  const emptyEmployee = MockEmployeeRepository.emptyEmployee()
+  const emptyEmployee =
+    // Mock
+    EmployeeRepository.emptyEmployee()
   const router = useRouter()
 
   return (
@@ -23,7 +26,10 @@ export default function EmployeeCreatePage() {
           router.push('/employees/')
         }}
         onSave={(values: IEmployee) => {
-          console.log(values)
+          console.log('dfjalkflsadfkljalfkj')
+          EmployeeRepository.createEmployee(values).then((_) => {
+            router.push('/employees/')
+          })
         }}
         onCancel={() => {
           router.push('/employees/')

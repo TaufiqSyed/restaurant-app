@@ -29,7 +29,7 @@ export default function Employee({
 
   const init = async () => {
     const employee_ = await // Mock
-    EmployeeRepository.fetchEmployeeById('abcdef')
+    EmployeeRepository.fetchEmployeeById(id)
     setEmployee(employee_)
     setLoading(false)
   }
@@ -64,7 +64,11 @@ export default function Employee({
           onEdit={() => {
             router.push(`/employees/${employee!.userid}/edit`)
           }}
-          onDelete={() => {}}
+          onDelete={() => {
+            EmployeeRepository.deleteEmployee(id).then((_) => {
+              router.push('/employees')
+            })
+          }}
           FormikForm={EmployeeForm}
         />
       )}

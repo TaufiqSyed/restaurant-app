@@ -52,6 +52,7 @@ const Links = [
   { name: 'Employees', href: '/employees/', adminOnly: true },
   { name: 'Customers', href: '/customers/', adminOnly: false },
   { name: 'Menu', href: '/menu/', adminOnly: false },
+  { name: 'Logs', href: '/logs/', adminOnly: true },
 ]
 
 const NavLink = ({ children, href }: { children: ReactNode; href: string }) => {
@@ -90,6 +91,7 @@ export function NavigationBar({ root_href }: { root_href: string }) {
   const { colorMode } = useColorMode()
   const [navOpen, setNavOpen] = useState(true)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   const [user, setUser] = useState<IUser | null>(null)
 
@@ -186,6 +188,15 @@ export function NavigationBar({ root_href }: { root_href: string }) {
                   Create {hrefToEntityName(root_href)}
                 </Button>
               </NavLink>
+              <Button
+                ml='12px'
+                onClick={() => {
+                  localStorage.removeItem('user')
+                  router.push('/login')
+                }}
+              >
+                Log Out
+              </Button>
             </Flex>
           )}
         </Flex>

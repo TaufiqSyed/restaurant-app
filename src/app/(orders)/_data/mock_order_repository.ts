@@ -1,6 +1,6 @@
 import { MockCustomerRepository } from '@/app/customers/_data/mock_customer_repository'
 import { MockMenuItemRepository } from '@/app/menu/_data/mock_menu_item_repository'
-import { IApiResponse, IOrder, IPartialOrder } from '@/constants/interfaces'
+import { IApiResponse, IOrder } from '@/constants/interfaces'
 import {
   randomDate,
   randomInteger,
@@ -18,14 +18,14 @@ import {
 // menu_itemids?: number[]
 
 export class MockOrderRepository {
-  static emptyOrder = (): IPartialOrder => {
+  static emptyOrder = (): IOrder => {
     return {
       orderid: '',
-      userid: '',
+      employeeid: '',
       customerid: '',
       tablenumber: '',
       orderdate: '',
-      total_price: '',
+      totalprice: '',
       menu_items: [],
       menu_itemids: [],
       customer: undefined,
@@ -40,11 +40,11 @@ export class MockOrderRepository {
     const menu_itemids = menu_items.map((e) => e.itemid)
     return {
       orderid: randomName(),
-      userid: randomName(),
+      employeeid: randomName(),
       customerid: randomName(),
       tablenumber: randomInteger(),
       orderdate: randomDate(),
-      total_price: randomInteger(),
+      totalprice: randomInteger(),
       menu_items,
       menu_itemids,
       customer: MockCustomerRepository.generateMockCustomer(),
@@ -56,7 +56,7 @@ export class MockOrderRepository {
       orders.push(MockOrderRepository.generateMockOrder())
     return orders
   }
-  static fetchOrderById = async (id: number): Promise<IOrder> => {
+  static fetchOrderById = async (id: string): Promise<IOrder> => {
     return MockOrderRepository.generateMockOrder()
   }
   static createOrder = async (order: IOrder): Promise<IApiResponse> => {

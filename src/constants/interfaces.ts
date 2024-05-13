@@ -1,6 +1,6 @@
 export interface IUser {
   isadmin: boolean
-  user_id: string
+  userid: string
 }
 
 export interface IEmployee {
@@ -12,6 +12,7 @@ export interface IEmployee {
   contact_information: string
   salary: number
   password?: string
+  mgr: string
 }
 
 export interface ICustomer {
@@ -19,7 +20,6 @@ export interface ICustomer {
   name: string
   contact_information: string
   email: string
-  mgr: string
 }
 
 export interface IMenuItem {
@@ -32,32 +32,19 @@ export interface IMenuItem {
 
 export interface IOrder {
   orderid: string
-  userid: string
+  employeeid: string
   customerid: string
   tablenumber: number | ''
   orderdate: Date | ''
-  total_price: number | ''
+  totalprice: number | ''
   menu_items?: IMenuItem[]
   customer?: ICustomer
   menu_itemids?: string[]
   menu_selects?: IMultiSelect[]
 }
 
-export interface IPartialOrder {
-  orderid: string
-  userid: string
-  customerid: string
-  tablenumber: number | ''
-  orderdate: Date | ''
-  total_price: number | ''
-  menu_items: IMenuItem[]
-  customer?: ICustomer
-  menu_itemids?: string[]
-  menu_selects?: IMultiSelect[]
-}
-
 export interface ILogin {
-  email: string
+  username: string
   password: string
 }
 

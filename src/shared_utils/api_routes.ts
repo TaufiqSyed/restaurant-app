@@ -6,6 +6,7 @@ export class ApiRoutes {
   static customers = `${ApiRoutes.apiV1}/customer`
   static employees = `${ApiRoutes.apiV1}/employee`
   static menuItems = `${ApiRoutes.apiV1}/menu`
+  static login = `${ApiRoutes.apiV1}/login`
 
   static orderById = (id: string) => `${ApiRoutes.orders}/${id}`
   static customerById = (id: string) => `${ApiRoutes.customers}/${id}`
@@ -14,6 +15,10 @@ export class ApiRoutes {
 
   static employeeByIdResetPwd = (id: string) =>
     `${ApiRoutes.employees}/reset-pwd/${id}`
+
+  static mostBoughtItems = `${ApiRoutes.apiV1}/mostboughtitems`
+  static mostFrequentCustomers = `${ApiRoutes.apiV1}/mostfrequentcustomers`
+  static employeeWithMostOrders = `${ApiRoutes.apiV1}/employeewithmostorders`
 
   // ALL ROUTES:
 

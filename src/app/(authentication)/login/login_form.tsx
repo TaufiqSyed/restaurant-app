@@ -28,12 +28,12 @@ export default function LoginForm({
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
             <FormControl>
-              <FormLabel htmlFor='email'>Email Address</FormLabel>
+              <FormLabel htmlFor='username'>Username</FormLabel>
               <Field
                 as={Input}
-                id='email'
-                name='email'
-                type='email'
+                id='username'
+                name='username'
+                type='text'
                 variant='filled'
               />
             </FormControl>

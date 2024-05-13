@@ -28,7 +28,7 @@ export default function MenuItem({
 
   const init = async () => {
     const menuitem_ = await // Mock
-    MenuItemRepository.fetchMenuItemById('abc')
+    MenuItemRepository.fetchMenuItemById(id)
     setMenuItem(menuitem_)
     setLoading(false)
   }

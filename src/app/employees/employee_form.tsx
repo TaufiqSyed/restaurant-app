@@ -1,11 +1,12 @@
 'use client'
-import { Formik } from 'formik'
+import { Field, Formik } from 'formik'
 import {
   Button,
   FormControl,
   FormLabel,
   FormErrorMessage,
   VStack,
+  Checkbox,
 } from '@chakra-ui/react'
 import { IMenuItem, IEmployee } from '@/constants/interfaces'
 import { Validator } from '@/shared_utils/validator'
@@ -42,18 +43,15 @@ export default function EmployeeForm({
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
-            <FormControl
-              isReadOnly={viewOnly}
-              isInvalid={!!errors.userid && touched.userid}
-            >
-              <FormLabel>Employee ID</FormLabel>
-              <GenericField
-                key='userid'
-                id='userid'
-                validate={Validator.nonEmpty}
-              />
-              <FormErrorMessage>{errors.userid}</FormErrorMessage>
-            </FormControl>
+            {initialValues.userid != '' && (
+              <FormControl
+                isReadOnly={true}
+                isInvalid={!!errors.userid && touched.userid}
+              >
+                <FormLabel>Employee ID</FormLabel>
+                <GenericField key='userid' id='userid' validate={() => {}} />
+              </FormControl>
+            )}
             <FormControl
               isReadOnly={viewOnly}
               isInvalid={!!errors.username && touched.username}
@@ -69,16 +67,25 @@ export default function EmployeeForm({
             <FormControl
               isReadOnly={viewOnly}
               isInvalid={!!errors.isadmin && touched.isadmin}
+              display='flex'
+              flexDir='row'
+              alignItems='center'
             >
-              <FormLabel>Admin</FormLabel>
-              <GenericField
-                key='isadmin'
+              <Field
+                as={Checkbox}
                 id='isadmin'
-                validate={(x: any) => {}}
-                // validate={Validator.nonEmpty}
+                name='isadmin'
                 type='checkbox'
+                variant='filled'
+                onChange={(e: any) =>
+                  setFieldValue('isadmin', e.target.checked)
+                }
+                colorScheme='purple'
+                validate={() => {}}
               />
-              <FormErrorMessage>{errors.isadmin}</FormErrorMessage>
+              <FormLabel p='20px 12px 20px 12px' lineHeight='1' m='0'>
+                Admin
+              </FormLabel>
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
@@ -106,11 +113,37 @@ export default function EmployeeForm({
             </FormControl>
             <FormControl
               isReadOnly={viewOnly}
+              isInvalid={!!errors.password && touched.password}
+            >
+              <FormLabel>Password</FormLabel>
+              <GenericField
+                key='password'
+                id='password'
+                validate={Validator.nonEmpty}
+                // validate={Validator.posInteger}
+                type='password'
+              />
+              <FormErrorMessage>{errors.password}</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              isReadOnly={viewOnly}
+              isInvalid={!!errors.mgr && touched.mgr}
+            >
+              <FormLabel>Manager ID</FormLabel>
+              <GenericField
+                key='mgr'
+                id='mgr'
+                validate={Validator.posInteger}
+              />
+              <FormErrorMessage>{errors.mgr}</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              isReadOnly={viewOnly}
               isInvalid={
                 !!errors.contact_information && touched.contact_information
               }
             >
-              <FormLabel>contact_information</FormLabel>
+              <FormLabel>Contact Information</FormLabel>
               <GenericField
                 key='contact_information'
                 id='contact_information'

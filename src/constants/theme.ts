@@ -18,11 +18,15 @@ export const theme = extendTheme(config, {
   },
   semanticTokens: {
     colors: {
-      // componentColor: { default: '#ffffff', _dark: '#260725' }, // f7cdf5
-      componentColor: { default: '#f7ebfc', _dark: '#260725' }, // #fdf7ff'
-      navbarColor: { default: '#f6e3ff', _dark: '#32012F' }, // f1cef5
-      secondaryColor: { default: '#eddeff', _dark: '#310838' },
-      background: { default: '#d3bfe0', dark: '#1a0a1a' },
+      // componentColor: { default: '#f7ebfc', _dark: '#260725' }, // #fdf7ff'
+      // navbarColor: { default: '#f6e3ff', _dark: '#32012F' }, // f1cef5
+      // secondaryColor: { default: '#eddeff', _dark: '#310838' },
+      // background: { default: '#d3bfe0', dark: '#1a0a1a' },
+
+      componentColor: { default: '#e7dcfa', _dark: '#260725' }, // #fdf7ff'
+      navbarColor: { default: '#e8d4fa', _dark: '#32012F' }, // f1cef5
+      secondaryColor: { default: '#e9d9fc', _dark: '#310838' },
+      background: { default: '#e7cfff', dark: '#1a0a1a' },
     },
   },
 })
