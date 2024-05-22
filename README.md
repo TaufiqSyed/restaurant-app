@@ -18,7 +18,7 @@ Find the link to the backend here: https://github.com/code-crack0/database-backe
 - Restricted pages to only admins (Employees, Logs)
 - Encrypted passwords (done on backend)
   ***
-  **List of group members:**
+**List of group members:**
 - Taufiq Syed
 - Samad Sayed
 - Dheeman Gangopadhyay
