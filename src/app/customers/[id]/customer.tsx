@@ -29,7 +29,7 @@ export default function Customer({
 
   const init = async () => {
     const customer_ = await // Mock
-    CustomerRepository.fetchCustomerById('abcdef')
+    CustomerRepository.fetchCustomerById(id)
     setCustomer(customer_)
     setLoading(false)
   }
@@ -46,7 +46,11 @@ export default function Customer({
             router.push('/')
           }}
           onSave={(values: ICustomer) => {
-            console.log(values)
+            CustomerRepository.updateCustomer(values!.customerid, values).then(
+              (_) => {
+                router.push(`/customers/${values!.customerid}`)
+              }
+            )
           }}
           onCancel={() => {
             router.push(`/customers/${customer!.customerid}`)
@@ -65,7 +69,13 @@ export default function Customer({
           onEdit={() => {
             router.push(`/customers/${customer!.customerid}/edit`)
           }}
-          onDelete={() => {}}
+          onDelete={() => {
+            CustomerRepository.deleteCustomer(customer!.customerid).then(
+              (_) => {
+                router.push('/customers')
+              }
+            )
+          }}
           FormikForm={CustomerForm}
         />
       )}

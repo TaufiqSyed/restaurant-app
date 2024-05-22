@@ -43,7 +43,7 @@ export default function EmployeeForm({
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
-            {initialValues.userid != '' && (
+            {viewOnly && (
               <FormControl
                 isReadOnly={true}
                 isInvalid={!!errors.userid && touched.userid}
@@ -77,6 +77,8 @@ export default function EmployeeForm({
                 name='isadmin'
                 type='checkbox'
                 variant='filled'
+                isChecked={values.isadmin}
+                // checked={values.isadmin}
                 onChange={(e: any) =>
                   setFieldValue('isadmin', e.target.checked)
                 }
@@ -130,11 +132,7 @@ export default function EmployeeForm({
               isInvalid={!!errors.mgr && touched.mgr}
             >
               <FormLabel>Manager ID</FormLabel>
-              <GenericField
-                key='mgr'
-                id='mgr'
-                validate={Validator.posInteger}
-              />
+              <GenericField key='mgr' id='mgr' validate={Validator.nonEmpty} />
               <FormErrorMessage>{errors.mgr}</FormErrorMessage>
             </FormControl>
             <FormControl

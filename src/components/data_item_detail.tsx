@@ -7,7 +7,17 @@ import {
   background,
 } from '@chakra-ui/react'
 import { MdDelete, MdEdit } from 'react-icons/md'
-import { IFormikForm, IMenuItem } from '@/constants/interfaces'
+import {
+  ICustomer,
+  IEmployee,
+  IFormikForm,
+  IMenuItem,
+} from '@/constants/interfaces'
+
+interface extraProps {
+  customers?: ICustomer[]
+  employees?: IEmployee[]
+}
 
 export const DataItemDetail = ({
   dataHeader,
@@ -19,6 +29,7 @@ export const DataItemDetail = ({
   FormikForm,
   omitFields,
   menuItems,
+  ...props
 }: {
   dataHeader: string
   // titleField: string
@@ -29,7 +40,7 @@ export const DataItemDetail = ({
   FormikForm: IFormikForm
   omitFields?: string[]
   menuItems?: IMenuItem[]
-}) => {
+} & extraProps) => {
   // let fieldnames = Object.keys(json).filter((e) => e != titleField)
   // if (omitFields != null) {
   //   fieldnames = fieldnames.filter((e) => !omitFields!.includes(e))
@@ -73,6 +84,7 @@ export const DataItemDetail = ({
           initialValues={json}
           viewOnly={true}
           menuItems={menuItems}
+          {...props}
         />
       </Box>
     </Box>

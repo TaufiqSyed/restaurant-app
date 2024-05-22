@@ -32,6 +32,8 @@ export const EotmItem = ({
       cursor={cursor ?? 'pointer'}
       onClick={onClick}
       boxShadow='0 0 0 10px var(--chakra-colors-dark-background)'
+      border='2px solid'
+      borderColor='purpleBorder'
       {...props}
     >
       <Box display='flex' dir='column' w='100%'>
@@ -59,8 +61,10 @@ export const EotmItem = ({
                     justifyContent={'space-between'}
                     key={`${title}:${attrname}`}
                   >
-                    <Text mr='4px'>{attrname + ':'}</Text>
-                    <Text fontWeight='bold'>
+                    <Text fontWeight='semibold' mr='4px'>
+                      {attrname + ':'}
+                    </Text>
+                    <Text fontWeight='semibold'>
                       {fieldString(fieldsvals[idx])}
                     </Text>
                   </Flex>

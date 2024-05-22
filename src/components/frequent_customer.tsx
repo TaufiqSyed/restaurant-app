@@ -33,6 +33,8 @@ export const FrequentCustomer = ({
       cursor={cursor ?? 'pointer'}
       onClick={onClick}
       boxShadow='0 0 0 10px var(--chakra-colors-dark-background)'
+      border='2px solid'
+      borderColor='purpleBorder'
       {...props}
     >
       <Box
@@ -55,6 +57,7 @@ export const FrequentCustomer = ({
               w='100%'
               justifyContent={'space-between'}
               key={`freq:${nth}:${attrname}`}
+              fontWeight='semibold'
             >
               <Text mr='4px'>{attrname + ':'}</Text>
               <Text>{fieldString(fieldsvals[idx])}</Text>

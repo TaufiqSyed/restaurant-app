@@ -33,6 +33,8 @@ export const MostBoughtItems = ({
       cursor={cursor ?? 'pointer'}
       onClick={onClick}
       boxShadow='0 0 0 10px var(--chakra-colors-dark-background)'
+      border='2px solid'
+      borderColor='purpleBorder'
       {...props}
     >
       <Box
@@ -56,8 +58,10 @@ export const MostBoughtItems = ({
               justifyContent={'space-between'}
               key={`freq:${nth}:${attrname}`}
             >
-              <Text mr='4px'>{attrname + ':'}</Text>
-              <Text>{fieldString(fieldsvals[idx])}</Text>
+              <Text fontWeight='semibold' mr='4px'>
+                {attrname + ':'}
+              </Text>
+              <Text fontWeight='semibold'>{fieldString(fieldsvals[idx])}</Text>
             </Flex>
           )
         })}

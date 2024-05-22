@@ -38,18 +38,20 @@ export default function CustomerForm({
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
-            <FormControl
-              isReadOnly={viewOnly}
-              isInvalid={!!errors.customerid && touched.customerid}
-            >
-              <FormLabel>Customer ID</FormLabel>
-              <GenericField
-                key='customerid'
-                id='customerid'
-                validate={Validator.posInteger}
-              />
-              <FormErrorMessage>{errors.customerid}</FormErrorMessage>
-            </FormControl>
+            {viewOnly && (
+              <FormControl
+                isReadOnly={viewOnly}
+                isInvalid={!!errors.customerid && touched.customerid}
+              >
+                <FormLabel>Customer ID</FormLabel>
+                <GenericField
+                  key='customerid'
+                  id='customerid'
+                  validate={Validator.posInteger}
+                />
+                <FormErrorMessage>{errors.customerid}</FormErrorMessage>
+              </FormControl>
+            )}
             <FormControl
               isReadOnly={viewOnly}
               isInvalid={!!errors.name && touched.name}

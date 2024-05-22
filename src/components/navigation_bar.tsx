@@ -183,11 +183,13 @@ export function NavigationBar({ root_href }: { root_href: string }) {
           {!isOpen && (
             <Flex ml='auto' mr='50px' flexDir='row' alignItems='center'>
               <DarkModeSwitch />
-              <NavLink href={root_href + 'create'}>
-                <Button colorScheme='purple'>
-                  Create {hrefToEntityName(root_href)}
-                </Button>
-              </NavLink>
+              {root_href != '/logs/' && (
+                <NavLink href={root_href + 'create'}>
+                  <Button colorScheme='purple'>
+                    Create {hrefToEntityName(root_href)}
+                  </Button>
+                </NavLink>
+              )}
               <Button
                 ml='12px'
                 onClick={() => {
@@ -203,6 +205,9 @@ export function NavigationBar({ root_href }: { root_href: string }) {
       ) : (
         <>
           <Flex h={12} alignItems={'center'} justifyContent={'space-between'}>
+            <Box pl='56px'>
+              <NavLogo colorMode={colorMode} />
+            </Box>
             <Flex
               ml='auto'
               mr='50px'

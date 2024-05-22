@@ -1,6 +1,14 @@
 import { Box, Button, Text, Flex } from '@chakra-ui/react'
-import { IFormikForm, IMenuItem } from '@/constants/interfaces'
-
+import {
+  ICustomer,
+  IEmployee,
+  IFormikForm,
+  IMenuItem,
+} from '@/constants/interfaces'
+interface extraProps {
+  customers?: ICustomer[]
+  employees?: IEmployee[]
+}
 export const DataItemDetailEdit = ({
   dataHeader: datatype,
   // titleField,
@@ -11,6 +19,7 @@ export const DataItemDetailEdit = ({
   omitFields,
   FormikForm,
   menuItems,
+  ...props
 }: {
   dataHeader: string
   // titleField: string
@@ -21,7 +30,7 @@ export const DataItemDetailEdit = ({
   omitFields: string[] | null | undefined
   FormikForm: IFormikForm
   menuItems?: IMenuItem[]
-}) => {
+} & extraProps) => {
   // let fieldnames = Object.keys(json).filter((e) => e != titleField)
   // let fieldnames = Object.keys()
   // if (omitFields != null) {
@@ -51,6 +60,7 @@ export const DataItemDetailEdit = ({
           viewOnly={false}
           onSubmit={onSave}
           menuItems={menuItems}
+          {...props}
         />
         <Button onClick={onCancel} width='full' mt='14px'>
           Cancel

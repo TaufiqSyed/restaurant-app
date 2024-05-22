@@ -9,7 +9,7 @@ import MenuItemForm from '../menu_item_form'
 import { MenuItemRepository } from '../_data/menu_item_repository'
 
 export default function MenuItemCreatePage() {
-  const emptyMenuItem = MockMenuItemRepository.emptyMenuItem()
+  const emptyMenuItem = MenuItemRepository.emptyMenuItem()
   const router = useRouter()
 
   return (

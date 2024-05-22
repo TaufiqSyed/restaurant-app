@@ -30,6 +30,7 @@ export default function Employee({
   const init = async () => {
     const employee_ = await // Mock
     EmployeeRepository.fetchEmployeeById(id)
+    console.log('wooh ' + JSON.stringify(employee_))
     setEmployee(employee_)
     setLoading(false)
   }
@@ -45,7 +46,11 @@ export default function Employee({
             router.push('/employees/')
           }}
           onSave={(values: IEmployee) => {
-            console.log(values)
+            EmployeeRepository.updateEmployee(values!.userid, values).then(
+              (_) => {
+                router.push(`/employees/${values!.userid}`)
+              }
+            )
           }}
           onCancel={() => {
             router.push(`/employees/${employee!.userid}`)

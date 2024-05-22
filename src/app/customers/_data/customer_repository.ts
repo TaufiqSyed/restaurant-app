@@ -27,7 +27,8 @@ export class CustomerRepository {
     return customers
   }
   static fetchCustomerById = async (id: string): Promise<ICustomer> => {
-    const customer_ = (await axios.get(ApiRoutes.customerById(id))).data
+    const customer_ = (await axios.get(ApiRoutes.customerById(id))).data[0]
+    console.log
     const customer = CustomerRepository.cleanServerData(customer_)
     return customer
   }
@@ -48,9 +49,30 @@ export class CustomerRepository {
     }
   }
   static updateCustomer = async (
+    id: string,
     customer: ICustomer
   ): Promise<IApiResponse> => {
-    const resp: AxiosResponse = await axios.put(ApiRoutes.customers, customer)
+    const resp: AxiosResponse = await axios.put(
+      ApiRoutes.customerById(id),
+      customer
+    )
+    if (resp.status == 200 || resp.status == 201) {
+      return {
+        success: true,
+      }
+    } else {
+      return {
+        success: false,
+        message: 'Invalid Data',
+      }
+    }
+  }
+  static deleteCustomer = async (
+    customer_id: string
+  ): Promise<IApiResponse> => {
+    const resp: AxiosResponse = await axios.put(
+      ApiRoutes.customerById(customer_id)
+    )
     if (resp.status == 200 || resp.status == 201) {
       return {
         success: true,
@@ -70,7 +92,7 @@ export class CustomerRepository {
         ConvertKeysToLowerCase(e)
       return {
         customerid: customer_customerid,
-        '# of visits': occurrence_count,
+        'number of visits': occurrence_count,
         ...rest,
       }
     })

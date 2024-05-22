@@ -34,7 +34,7 @@ export default function EmployeesPage() {
     ])
     const { occurrence_count, ...rest } = eotm
     setEmployees(emps)
-    setEmpOfTheMonth({ ...rest, '# of orders taken': occurrence_count })
+    setEmpOfTheMonth({ ...rest, 'number of orders taken': occurrence_count })
     setLoading(false)
   }
 

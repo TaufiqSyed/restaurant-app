@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bon Appétit - A CMP320 Project
 
-## Getting Started
+A full-stack restaurant management software built as a showcase for Database Systems at the American University of Sharjah.
+Find the link to the backend here: https://github.com/code-crack0/database-backend
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Features:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Create, read, update or delete orders
+- Create, read, update or delete employees
+- Create, read, update or delete customers
+- Create, read, update or delete menu items
+- View the employee of the month
+- View the most frequent customers
+- View the most popular menu items
+- Full-site dark mode (using toggle)
+- Restricted pages to only admins (Employees, Logs)
+- Encrypted passwords (done on backend)
+  ***
+  **List of group members:**
+- Taufiq Syed
+- Samad Sayed
+- Dheeman Gangopadhyay
+- Chaitanya Narkedamilly
+- Oussama Jamal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**List of technologies used:**
 
-## Learn More
+- Next.js + React.js
+- Chakra UI [Styling library]
+- Axios [API library]
+- Formik [React form library]
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Valid admin credentials:**
+Username - taufiq22
+Password - Pass123!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+**Usage steps:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Install the latest version of Node.js [LTS] (v20.12.2)
+2. Clone this repository / download the zip file
+3. Open the project folder in terminal and run `npm install`
+4. [Set-up the backend](https://github.com/code-crack0/database-backend)
+5. Run `npm run build` to build the Next.js application
+6. Run `npm run start` to start the application
+7. Open `localhost:3000` on a web browser

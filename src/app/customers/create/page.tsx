@@ -12,7 +12,7 @@ import { LoadingSpinner } from '@/components/loading_spinner'
 import { CustomerRepository } from '../_data/customer_repository'
 
 export default function CustomerCreatePage() {
-  const emptyCustomer = MockCustomerRepository.emptyCustomer()
+  const emptyCustomer = CustomerRepository.emptyCustomer()
   const router = useRouter()
 
   return (

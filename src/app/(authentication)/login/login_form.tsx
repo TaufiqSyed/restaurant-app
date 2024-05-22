@@ -57,15 +57,7 @@ export default function LoginForm({
               />
               <FormErrorMessage>{errors.password}</FormErrorMessage>
             </FormControl>
-            <Field
-              as={Checkbox}
-              id='rememberMe'
-              name='rememberMe'
-              colorScheme='purple'
-            >
-              Remember me?
-            </Field>
-            <Button type='submit' colorScheme='purple' width='full'>
+            <Button mt='64px' type='submit' colorScheme='purple' width='full'>
               Login
             </Button>
           </VStack>

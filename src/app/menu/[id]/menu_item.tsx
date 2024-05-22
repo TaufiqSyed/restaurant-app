@@ -45,7 +45,11 @@ export default function MenuItem({
             router.push('/menu/')
           }}
           onSave={(values: IMenuItem) => {
-            console.log(values)
+            MenuItemRepository.updateMenuItem(values!.itemid, values).then(
+              (_) => {
+                router.push(`/menu/${values!.itemid}`)
+              }
+            )
           }}
           onCancel={() => {
             router.push(`/menu/${menuitem!.itemid}`)
@@ -64,7 +68,11 @@ export default function MenuItem({
           onEdit={() => {
             router.push(`/menu/${menuitem!.itemid}/edit`)
           }}
-          onDelete={() => {}}
+          onDelete={() => {
+            MenuItemRepository.deleteMenuItem(menuitem!.itemid).then((_) => {
+              router.push('/menu')
+            })
+          }}
           FormikForm={MenuItemForm}
         />
       )}

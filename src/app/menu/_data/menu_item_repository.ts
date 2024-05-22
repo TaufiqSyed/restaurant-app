@@ -52,9 +52,30 @@ export class MenuItemRepository {
     }
   }
   static updateMenuItem = async (
+    id: string,
     menuitem: IMenuItem
   ): Promise<IApiResponse> => {
-    const resp: AxiosResponse = await axios.put(ApiRoutes.menuItems, menuitem)
+    const resp: AxiosResponse = await axios.put(
+      ApiRoutes.menuItemById(id),
+      menuitem
+    )
+    if (resp.status == 200 || resp.status == 201) {
+      return {
+        success: true,
+      }
+    } else {
+      return {
+        success: false,
+        message: 'Invalid Data',
+      }
+    }
+  }
+  static deleteMenuItem = async (
+    menuitem_id: string
+  ): Promise<IApiResponse> => {
+    const resp: AxiosResponse = await axios.delete(
+      ApiRoutes.menuItemById(menuitem_id)
+    )
     if (resp.status == 200 || resp.status == 201) {
       return {
         success: true,

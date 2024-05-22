@@ -39,18 +39,20 @@ export default function MenuItemForm({
       {({ values, handleSubmit, errors, touched, setFieldValue }) => (
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align='flex-start'>
-            <FormControl
-              isReadOnly={viewOnly}
-              isInvalid={!!errors.itemid && touched.itemid}
-            >
-              <FormLabel>Item ID</FormLabel>
-              <GenericField
-                key='itemid'
-                id='itemid'
-                validate={Validator.nonEmpty}
-              />
-              <FormErrorMessage>{errors.itemid}</FormErrorMessage>
-            </FormControl>
+            {viewOnly && (
+              <FormControl
+                isReadOnly={viewOnly}
+                isInvalid={!!errors.itemid && touched.itemid}
+              >
+                <FormLabel>Item ID</FormLabel>
+                <GenericField
+                  key='itemid'
+                  id='itemid'
+                  validate={Validator.nonEmpty}
+                />
+                <FormErrorMessage>{errors.itemid}</FormErrorMessage>
+              </FormControl>
+            )}
             <FormControl
               isReadOnly={viewOnly}
               isInvalid={!!errors.itemname && touched.itemname}

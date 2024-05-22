@@ -13,7 +13,7 @@ export const LoginBox = ({ onSubmit }: { onSubmit: (values: any) => void }) => {
     >
       <Box>
         <Flex flexDir='row' w='100%' justifyContent={'space-between'}>
-          <Text fontSize='32px' fontWeight='bold' mb='12px'>
+          <Text fontSize='32px' fontWeight='bold' mb='32px'>
             Login
           </Text>
         </Flex>

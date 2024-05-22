@@ -8,15 +8,15 @@ export const DataItem = ({
   omitFields,
   cursor,
   titleFontSize,
-  ...props
-}: {
+}: // ...props
+{
   titleField: string
   json: any
   onClick?: () => void
   omitFields?: string[]
   cursor?: string
   titleFontSize?: string
-} & BoxProps) => {
+}) => {
   let title: any = json[titleField]
   let fieldnames = Object.keys(json).filter((e) => e != titleField)
   if (omitFields != null) {
@@ -33,7 +33,7 @@ export const DataItem = ({
       cursor={cursor ?? 'pointer'}
       onClick={onClick}
       boxShadow='0 0 0 10px var(--chakra-colors-dark-background)'
-      {...props}
+      // {...props}
     >
       <Box>
         <Text
